@@ -6,11 +6,11 @@ class TestCase(unittest.TestCase):
 
     def test1(self):
         expected = "Hello World"
-        self.assertEqual(app.my_func(), expected)
+        self.assertEqual(app.index(), expected)
 
     def test2(self):
         expected = "Goodbye World"
-        self.assertNotEqual(app.my_func(), expected)
+        self.assertNotEqual(app.index(), expected)
 
 
 if __name__ == '__main__':
