@@ -15,7 +15,7 @@ def handle_error(ex):
 
 @app.route('/')
 def index():
-    return 'Hello, World!'
+    return 'Hello World'
 
 @app.route('/users', methods=['GET', 'POST'])
 def users():
