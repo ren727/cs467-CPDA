@@ -50,10 +50,10 @@ def resource_user(id):
 @app.route('/posts', methods=['GET', 'POST'])
 def resource_posts():
     if request.method == 'GET':
-        return posts.get_posts(request)
+        return posts.fetch_posts(request)
 
     elif request.method == 'POST':
-        return posts.post_posts(request)
+        return posts.store_posts(request)
 
     else:
         raise ErrorResponse({"Error": "Method not recognized"}, 405)
