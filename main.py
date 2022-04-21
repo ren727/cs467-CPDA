@@ -50,10 +50,14 @@ def resource_user(id):
 @app.route('/posts', methods=['GET', 'POST'])
 def resource_posts():
     if request.method == 'GET':
-        return posts.fetch_posts(request)
+        base_url = request.base_url
+        q_limit = int(request.args.get('limit', '10'))
+        q_offset = int(request.args.get('offset', '0'))
+        return posts.fetch_posts(base_url, q_limit, q_offset)
 
     elif request.method == 'POST':
-        return posts.store_posts(request)
+        post_data = request.get_json()
+        return posts.store_new_post(post_data)
 
     else:
         raise ErrorResponse({"Error": "Method not recognized"}, 405)
@@ -62,10 +66,11 @@ def resource_posts():
 @app.route('/posts/<id>', methods=['GET', 'DELETE'])
 def resource_post(id):
     if request.method == 'GET':
-        return posts.get_post(request, id)
+        self_url = request.base_url
+        return posts.fetch_single_post(id, self_url)
 
     elif request.method == 'DELETE':
-        return posts.delete_post(request, id)
+        return posts.delete_single_post(id)
 
     else:
         raise ErrorResponse({"Error": "Method not recognized"}, 405)
