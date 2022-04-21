@@ -26,7 +26,7 @@ def fetch_posts(base_url, q_limit, q_offset):
     return output
 
 
-def store_posts(post_data):
+def store_new_post(post_data):
     if len(post_data) == 0:
         error_msg = {
             'Error': 'The post can not be empty!'
@@ -45,9 +45,18 @@ def store_posts(post_data):
     client.put(entity)
 
 
-def get_post(request, id):
-    pass
+def fetch_single_post(id, self_url):
+    post_key = client.key("posts", int(id))
+    post_found = client.get(key=post_key)
+    if post_found:
+        post_found['id'] = str(id)
+        post_found['self'] = self_url
+        return post_found
+    else:
+        return "No such post was found!"
 
 
-def delete_post(request, id):
-    pass
+def delete_single_post(id):
+    post_key = client.key("posts", int(id))
+    client.delete(post_key)
+    return "delete successfully!"
