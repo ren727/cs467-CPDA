@@ -79,22 +79,22 @@ def resource_post(id):
 @app.route('/comments', methods=['GET', 'POST'])
 def resource_comments():
     if request.method == 'GET':
-        return comments.get_comments(request)
+        return comments.fetch_comments(request)
 
     elif request.method == 'POST':
-        return comments.post_comments(request)
+        return comments.store_new_comments(request)
 
     else:
         raise ErrorResponse({"Error": "Method not recognized"}, 405)
 
 
-@app.route('/comments/<id>', methods=['GET', 'PUT', 'DELETE'])
+@app.route('/comments/<id>', methods=['GET', 'PATCH', 'DELETE'])
 def resource_comment(id):
     if request.method == 'GET':
-        return comments.get_comment(request, id)
+        return comments.fetch_comment(request, id)
 
-    elif request.method == 'PUT':
-        return comments.put_comment(request, id)
+    elif request.method == 'PATCH':
+        return comments.edit_comment(request, id)
 
     elif request.method == 'DELETE':
         return comments.delete_comment(request, id)
