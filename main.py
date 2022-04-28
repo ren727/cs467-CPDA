@@ -23,10 +23,10 @@ def index():
 @app.route('/users', methods=['GET', 'POST'])
 def resource_users():
     if request.method == 'GET':
-        return users.get_users(request)
+        return users.fetch_users(request)
 
     elif request.method == 'POST':
-        return users.post_user(request)
+        return users.store_new_user(request)
 
     else:
         raise ErrorResponse({"Error": "Method not recognized"}, 405)
@@ -35,10 +35,10 @@ def resource_users():
 @app.route('/users/<id>', methods=['GET', 'PATCH', 'DELETE'])
 def resource_user(id):
     if request.method == 'GET':
-        return users.get_user(request, id)
+        return users.fetch_users(request, id)
 
     elif request.method == 'PATCH':
-        return users.patch_user(request, id)
+        return users.edit_user(request, id)
 
     elif request.method == 'DELETE':
         return users.delete_user(request, id)
@@ -76,25 +76,25 @@ def resource_post(id):
         raise ErrorResponse({"Error": "Method not recognized"}, 405)
 
 
-@app.route('/comments', methods=['GET', 'POST'])
-def resource_comments():
+@app.route('/posts/<post_id>/comments', methods=['GET', 'POST'])
+def resource_comments(post_id):
     if request.method == 'GET':
-        return comments.get_comments(request)
+        return comments.fetch_comments(request, post_id)
 
     elif request.method == 'POST':
-        return comments.post_comments(request)
+        return comments.store_new_comments(request, post_id)
 
     else:
         raise ErrorResponse({"Error": "Method not recognized"}, 405)
 
 
-@app.route('/comments/<id>', methods=['GET', 'PUT', 'DELETE'])
+@app.route('/comments/<id>', methods=['GET', 'PATCH', 'DELETE'])
 def resource_comment(id):
     if request.method == 'GET':
-        return comments.get_comment(request, id)
+        return comments.fetch_comment(request, id)
 
-    elif request.method == 'PUT':
-        return comments.put_comment(request, id)
+    elif request.method == 'PATCH':
+        return comments.edit_comment(request, id)
 
     elif request.method == 'DELETE':
         return comments.delete_comment(request, id)
