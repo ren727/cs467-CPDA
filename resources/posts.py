@@ -36,9 +36,16 @@ def store_new_post(post_data):
             'Error': 'The post is longer than 255 characters!'
         }
     entity = datastore.Entity(key=client.key('posts'))
+    # time is set by the system
+    time = a_time_function_here
     entity.update({
-        "user": post_data['user'],
-        "content": post_data['content']
+        "user_id": post_data['user_id'],
+        "title": post_data['title'],
+        "content": post_data['content'],
+        "categories": post_data['categories'],
+        "created_at": time,
+        "comments": [],
+        "modified_at": None,
     })
     client.put(entity)
     msg = {
