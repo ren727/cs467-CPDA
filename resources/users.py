@@ -23,8 +23,8 @@ def fetch_users(request):
 def store_new_user(request):
     content = request.get_json()
     if validate_user(content):
-        timezone = timezone('US/Pacific') 
-        time = datetime.now(timezone)
+        pst_timezone = timezone('US/Pacific') 
+        time = datetime.now(pst_timezone)
 
         entity = datastore.Entity(key=client.key('comments'))
         entity.update({

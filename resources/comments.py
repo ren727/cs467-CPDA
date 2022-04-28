@@ -11,9 +11,8 @@ MAX_LENGTH = 255
 client = datastore.Client()
 
 
-def fetch_comments(request):
+def fetch_comments(request, post_id):
     content = request.get_json()
-    post_id = content["post_id"]
     query = client.query(kind="comments")
     query.add_filter('post', '=', post_id)
     results = list(query.fetch())
@@ -25,16 +24,16 @@ def fetch_comments(request):
     output = {"comments": results}
     return output
 
-def store_new_comment(request):
+def store_new_comment(request, post_id):
     content = request.get_json()
     if validate_comment(content):
-        timezone = timezone('US/Pacific') 
-        time = datetime.now(timezone)
+        pst_timezone = timezone('US/Pacific') 
+        time = datetime.now(pst_timezone)
 
         entity = datastore.Entity(key=client.key('comments'))
         entity.update({
             "user_id": content['user_id'],
-            "post_id": content['post_id'],
+            "post_id": post_id,
             "content": content['content'],
             "created_at": time,
             "vote_score": 0
@@ -71,8 +70,8 @@ def edit_comment(request, id):
     if not content['content'] or not isinstance(content['content'], str):
         raise ErrorResponse({"Error": "Incorrectly formatted comment"}, 400)
     
-    timezone = timezone('US/Pacific') 
-    time = datetime.now(timezone)
+    pst_timezone = timezone('US/Pacific') 
+    time = datetime.now(pst_timezone)
     
     entity.update({"content": content['content']})
     entity['content'] = content['content']
