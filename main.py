@@ -49,15 +49,18 @@ def resource_user(id):
 
 @app.route('/posts', methods=['GET', 'POST'])
 def resource_posts():
+    base_url = request.base_url
     if request.method == 'GET':
-        base_url = request.base_url
         q_limit = int(request.args.get('limit', '10'))
         q_offset = int(request.args.get('offset', '0'))
-        return posts.fetch_posts(base_url, q_limit, q_offset)
+        return posts.fetch_posts(base_url, q_limit, q_offset), 200
 
     elif request.method == 'POST':
         post_data = request.get_json()
-        return posts.store_new_post(post_data)
+        valid, msg = posts.validate_post(post_data)
+        if not valid:
+            return msg, 400
+        return posts.store_new_post(base_url, post_data), 201
 
     else:
         raise ErrorResponse({"Error": "Method not recognized"}, 405)
@@ -65,24 +68,35 @@ def resource_posts():
 
 @app.route('/posts/<id>', methods=['GET', 'DELETE'])
 def resource_post(id):
+    self_url = request.base_url
+    exist, msg = posts.post_exists(id)
+    if not exist:
+        return msg, 404
     if request.method == 'GET':
-        self_url = request.base_url
-        return posts.fetch_single_post(id, self_url)
-
+        post_found = posts.fetch_single_post(id)
+        post_found['self'] = self_url
+        return post_found, 200
     elif request.method == 'DELETE':
-        return posts.delete_single_post(id)
-
+        return posts.delete_single_post(id), 200
+    elif request.method == "PATCH":
+        edit_data = request.get_json()
+        post_update = posts.edit_post(id, edit_data)
+        post_update['self'] = self_url
+        return post_update, 200
     else:
         raise ErrorResponse({"Error": "Method not recognized"}, 405)
 
 
 @app.route('/posts/<post_id>/comments', methods=['GET', 'POST'])
 def resource_comments(post_id):
+    root_url = request.url_root
     if request.method == 'GET':
-        return comments.fetch_comments(request, post_id)
+        return comments.fetch_comments(post_id, root_url)
 
     elif request.method == 'POST':
-        return comments.store_new_comments(request, post_id)
+        comment_data = request.get_json()
+
+        return comments.store_new_comment(comment_data, post_id, root_url)
 
     else:
         raise ErrorResponse({"Error": "Method not recognized"}, 405)
