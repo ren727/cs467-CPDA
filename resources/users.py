@@ -31,7 +31,10 @@ def store_new_user(request):
             "email": content['email'],
             "created_at": time,
             "vote_score": 0,
-            "blocked_users": []
+            "blocked_users": [],
+            "comments":[],
+            "posts":[],
+            "tags:[],
         })
         client.put(entity)
 
