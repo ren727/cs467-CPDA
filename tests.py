@@ -1,16 +1,16 @@
 import unittest
-import app
+import main
 
 
 class TestCase(unittest.TestCase):
 
     def test1(self):
         expected = "Hello World"
-        self.assertEqual(app.index(), expected)
+        self.assertEqual(main.index(), expected)
 
     def test2(self):
         expected = "Goodbye World"
-        self.assertNotEqual(app.index(), expected)
+        self.assertNotEqual(main.index(), expected)
 
 
 if __name__ == '__main__':
