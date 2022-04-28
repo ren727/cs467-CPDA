@@ -23,10 +23,10 @@ def index():
 @app.route('/users', methods=['GET', 'POST'])
 def resource_users():
     if request.method == 'GET':
-        return users.get_users(request)
+        return users.fetch_users(request)
 
     elif request.method == 'POST':
-        return users.post_user(request)
+        return users.store_new_user(request)
 
     else:
         raise ErrorResponse({"Error": "Method not recognized"}, 405)
@@ -35,10 +35,10 @@ def resource_users():
 @app.route('/users/<id>', methods=['GET', 'PATCH', 'DELETE'])
 def resource_user(id):
     if request.method == 'GET':
-        return users.get_user(request, id)
+        return users.fetch_users(request, id)
 
     elif request.method == 'PATCH':
-        return users.patch_user(request, id)
+        return users.edit_user(request, id)
 
     elif request.method == 'DELETE':
         return users.delete_user(request, id)
