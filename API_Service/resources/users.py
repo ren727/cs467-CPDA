@@ -3,7 +3,7 @@ from flask import jsonify
 from datetime import datetime
 from pytz import timezone
 
-from error import ErrorResponse
+from API_Service.error import ErrorResponse
 
 client = datastore.Client()
 

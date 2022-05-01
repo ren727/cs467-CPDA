@@ -4,7 +4,7 @@ from datetime import datetime
 from pytz import timezone
 import posts
 
-from error import ErrorResponse
+from API_Service.error import ErrorResponse
 
 MIN_LENGTH = 1
 MAX_LENGTH = 255

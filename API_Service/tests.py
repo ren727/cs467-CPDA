@@ -1,5 +1,5 @@
 import unittest
-import main
+import API_Service.main as main
 
 
 class TestCase(unittest.TestCase):

@@ -3,7 +3,7 @@ from flask import Flask, request, jsonify
 import resources.users as users
 import resources.posts as posts
 import resources.comments as comments
-from error import ErrorResponse
+from API_Service.error import ErrorResponse
 
 app = Flask(__name__)
 
