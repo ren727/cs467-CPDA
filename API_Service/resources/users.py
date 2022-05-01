@@ -3,7 +3,7 @@ from flask import jsonify
 from datetime import datetime
 from pytz import timezone
 
-from API_Service.error import ErrorResponse
+from error import ErrorResponse
 
 client = datastore.Client()
 
@@ -34,7 +34,7 @@ def store_new_user(request):
             "blocked_users": [],
             "comments":[],
             "posts":[],
-            "tags:[],
+            "tags":[],
         })
         client.put(entity)
 
