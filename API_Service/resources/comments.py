@@ -26,7 +26,10 @@ def comment_exist(comment_id):
 
 def fetch_post_comments(request, post_id):
     query = client.query(kind="comments")
-    query.add_filter('post_id', '=', post_id)
+    
+    if post_id:
+        query.add_filter('post_id', '=', post_id)
+    
     results = list(query.fetch())
 
     for e in results:
@@ -47,6 +50,7 @@ def store_new_comment(request, post_id):
             "post_id": post_id,
             "content": content['content'],
             "created_at": time,
+            "modified_at": None,
             "vote_score": 0,
             "upvote": 0,
             "downvote": 0,

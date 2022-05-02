@@ -87,16 +87,22 @@ def resource_post(id):
         raise ErrorResponse({"Error": "Method not recognized"}, 405)
 
 
+@app.route('/comments', methods=['GET'])
+def all_comments():
+    if request.method == 'GET':
+        return comments.fetch_comments(request)
+    
+    else:
+        raise ErrorResponse({"Error": "Method not recognized"}, 405)
+
+
 @app.route('/posts/<post_id>/comments', methods=['GET', 'POST'])
 def resource_comments(post_id):
-    root_url = request.url_root
     if request.method == 'GET':
-        return comments.fetch_comments(post_id, root_url)
+        return comments.fetch_comments(request, post_id)
 
     elif request.method == 'POST':
-        comment_data = request.get_json()
-
-        return comments.store_new_comment(comment_data, post_id, root_url)
+        return comments.store_new_comment(request, post_id)
 
     else:
         raise ErrorResponse({"Error": "Method not recognized"}, 405)
