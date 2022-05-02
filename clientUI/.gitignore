@@ -30,6 +30,10 @@ local.properties
 *.iml
 *.hprof
 
+# Android/IntelliJ
+#
+.expo
+
 # node.js
 #
 node_modules/
