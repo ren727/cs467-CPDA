@@ -35,7 +35,7 @@ def resource_users():
 @app.route('/users/<id>', methods=['GET', 'PATCH', 'DELETE'])
 def resource_user(id):
     if request.method == 'GET':
-        return users.fetch_users(request, id)
+        return users.fetch_user(request, id)
 
     elif request.method == 'PATCH':
         return users.edit_user(request, id)
@@ -87,16 +87,25 @@ def resource_post(id):
         raise ErrorResponse({"Error": "Method not recognized"}, 405)
 
 
+@app.route('/comments', methods=['GET', 'DELETE'])
+def all_comments():
+    if request.method == 'GET':
+        return comments.fetch_comments(request)
+    
+    elif request.method == 'DELETE':
+        return comments.wipe_comments()
+        
+    else:
+        raise ErrorResponse({"Error": "Method not recognized"}, 405)
+
+
 @app.route('/posts/<post_id>/comments', methods=['GET', 'POST'])
 def resource_comments(post_id):
-    root_url = request.url_root
     if request.method == 'GET':
-        return comments.fetch_comments(post_id, root_url)
+        return comments.fetch_comments(request, post_id)
 
     elif request.method == 'POST':
-        comment_data = request.get_json()
-
-        return comments.store_new_comment(comment_data, post_id, root_url)
+        return comments.store_new_comment(request, post_id)
 
     else:
         raise ErrorResponse({"Error": "Method not recognized"}, 405)
