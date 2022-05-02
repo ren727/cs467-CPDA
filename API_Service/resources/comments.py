@@ -25,26 +25,20 @@ def comment_exist(comment_id):
         return True, ''
 
 
-def fetch_comments(post_id, root_url):
-    # content = request.get_json()
-    # query = client.query(kind="comments")
-    # query.add_filter('post', '=', post_id)
-    # results = list(query.fetch())
+def fetch_post_comments(request, post_id):
+    query = client.query(kind="comments")
+    query.add_filter('post_id', '=', post_id)
+    results = list(query.fetch())
 
-    # for e in results:
-    #     e["id"] = e.key.id
-    #     e["self"] = request.url + '/' + str(e.key.id)
+    for e in results:
+        e["id"] = e.key.id
+        e["self"] = request.url_root + '/comments/' + str(e.key.id)
 
-    # output = {"comments": results}
-    post_found = posts.fetch_single_post(post_id)
-    output = []
-    for comment_id in post_found['comments']:
-        comment_found = fetch_comment(comment_id, root_url)
-        output.append(comment_found)
-    return output
+    return results, 200
 
 
-def store_new_comment(content, post_id, root_url):
+def store_new_comment(request, post_id):
+    content = request.get_json()
     if validate_comment(content):
         pst_timezone = timezone('US/Pacific')
         time = datetime.now(pst_timezone)
@@ -62,22 +56,12 @@ def store_new_comment(content, post_id, root_url):
         client.put(entity)
 
         entity['id'] = entity.key.id
-        entity['self'] = root_url + '/comments/' + str(entity.key.id)
-
-        post_key = client.key("posts", int(post_id))
-        post_found = client.get(key=post_key)
-        post_found['comments'].append(id)
-        client.put(post_found)
-
-        user_key = client.key("users", int(content['user_id']))
-        user_found = client.get(key=user_key)
-        user_found['comments'].append(id)
-        client.put(user_found)
+        entity['self'] = request.url_root + '/comments/' + str(entity.key.id)
 
         return jsonify(entity), 201
 
 
-def fetch_comment(id, root_url):
+def fetch_comment(request, id):
     entity_key = client.key("comments", int(id))
     entity = client.get(key=entity_key)
 
@@ -85,7 +69,7 @@ def fetch_comment(id, root_url):
         raise ErrorResponse({"Error": "Comment does not exist"}, 404)
 
     entity['id'] = entity.key.id
-    entity['self'] = root_url + '/comments/' + str(entity.key.id)
+    entity['self'] = request.url_root + '/comments/' + str(entity.key.id)
 
     return entity
 
@@ -130,15 +114,10 @@ def delete_comment(request, id):
 
 
 def validate_comment(new_comment):
-    try:
-        user_id = new_comment["user_id"]
-        post_id = new_comment["post_id"]
-        content = new_comment["content"]
-
-    except:
+    if "user_id" not in new_comment or "post_id" not in new_comment or "content" not in new_comment:
         raise ErrorResponse({"Error": "Comment missing required fields"}, 400)
 
-    if not isinstance(content, str):
+    if not isinstance(new_comment['content'], str):
         raise ErrorResponse({"Error": "Incorrectly formatted comment"}, 400)
 
     return True
