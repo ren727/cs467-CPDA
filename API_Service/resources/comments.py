@@ -1,7 +1,6 @@
 from google.cloud import datastore
 from flask import jsonify
-from datetime import datetime
-from pytz import timezone
+from . import time
 from . import posts
 
 from error import ErrorResponse
@@ -40,8 +39,7 @@ def fetch_post_comments(request, post_id):
 def store_new_comment(request, post_id):
     content = request.get_json()
     if validate_comment(content):
-        pst_timezone = timezone('US/Pacific')
-        time = datetime.now(pst_timezone)
+        time = time.get_pacific_time()
 
         entity = datastore.Entity(key=client.key('comments'))
         entity.update({
@@ -86,8 +84,7 @@ def edit_comment(request, id):
     if not content['content'] or not isinstance(content['content'], str):
         raise ErrorResponse({"Error": "Incorrectly formatted comment"}, 400)
 
-    pst_timezone = timezone('US/Pacific')
-    time = datetime.now(pst_timezone)
+    time = time.get_pacific_time()
 
     entity.update({"content": content['content']})
     entity['content'] = content['content']
