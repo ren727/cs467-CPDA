@@ -24,9 +24,8 @@ def comment_exist(comment_id):
         return True, ''
 
 
-def fetch_post_comments(request, post_id):
+def fetch_comments(request, post_id=None):
     query = client.query(kind="comments")
-    
     if post_id:
         query.add_filter('post_id', '=', post_id)
     
@@ -36,13 +35,14 @@ def fetch_post_comments(request, post_id):
         e["id"] = e.key.id
         e["self"] = request.url_root + '/comments/' + str(e.key.id)
 
-    return results, 200
+    output = {"comments": results}
+    return output, 200
 
 
 def store_new_comment(request, post_id):
     content = request.get_json()
     if validate_comment(content):
-        time = time.get_pacific_time()
+        time = timezone.get_pacific_time()
 
         entity = datastore.Entity(key=client.key('comments'))
         entity.update({
@@ -73,7 +73,7 @@ def fetch_comment(request, id):
     entity['id'] = entity.key.id
     entity['self'] = request.url_root + '/comments/' + str(entity.key.id)
 
-    return entity
+    return jsonify(entity), 200
 
 
 def edit_comment(request, id):
@@ -88,7 +88,7 @@ def edit_comment(request, id):
     if not content['content'] or not isinstance(content['content'], str):
         raise ErrorResponse({"Error": "Incorrectly formatted comment"}, 400)
 
-    time = time.get_pacific_time()
+    time = timezone.get_pacific_time()
 
     entity.update({"content": content['content']})
     entity['content'] = content['content']
@@ -122,3 +122,13 @@ def validate_comment(new_comment):
         raise ErrorResponse({"Error": "Incorrectly formatted comment"}, 400)
 
     return True
+
+
+def wipe_comments():
+    query = client.query(kind="comments")
+    entities = list(query.fetch())
+
+    for entity in entities:
+        client.delete(entity.key)
+    
+    return '', 204

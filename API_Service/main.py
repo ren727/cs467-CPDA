@@ -87,11 +87,14 @@ def resource_post(id):
         raise ErrorResponse({"Error": "Method not recognized"}, 405)
 
 
-@app.route('/comments', methods=['GET'])
+@app.route('/comments', methods=['GET', 'DELETE'])
 def all_comments():
     if request.method == 'GET':
         return comments.fetch_comments(request)
     
+    elif request.method == 'DELETE':
+        return comments.wipe_comments()
+        
     else:
         raise ErrorResponse({"Error": "Method not recognized"}, 405)
 
