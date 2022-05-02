@@ -39,15 +39,20 @@ def validate_post(post_data):
         }
     # check the length of the content
     # should be in range [1, 255]
-    if len(post_data['content']) == 0:
+    msg = False
+    if len(post_data['title']) == 0:
         msg = {
             'Error': 'The post can not be empty!'
         }
-    elif len(post_data['content']) > 255:
+    elif len(post_data['title']) > 255:
         msg = {
             'Error': 'The post is longer than 255 characters!'
         }
-    return False, msg if msg else True, None
+    # return False, msg if msg else True, None 
+    if msg:
+        return False, msg
+    else:
+        return True, None
 
 
 def fetch_posts(base_url, q_limit, q_offset):
