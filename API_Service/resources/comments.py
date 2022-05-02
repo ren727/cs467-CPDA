@@ -1,6 +1,6 @@
 from google.cloud import datastore
 from flask import jsonify
-from . import time
+from . import timezone
 from . import posts
 
 from error import ErrorResponse

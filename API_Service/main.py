@@ -35,7 +35,7 @@ def resource_users():
 @app.route('/users/<id>', methods=['GET', 'PATCH', 'DELETE'])
 def resource_user(id):
     if request.method == 'GET':
-        return users.fetch_users(request, id)
+        return users.fetch_user(request, id)
 
     elif request.method == 'PATCH':
         return users.edit_user(request, id)
