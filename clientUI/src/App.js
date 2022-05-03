@@ -7,7 +7,6 @@ import Help from './screens/Help';
 import Topics from './screens/Topics';
 import Post1 from './screens/posts1';
 import Comment1 from './screens/comments1';
-import Login_Screen from './screens/LoginScreen';
 import LoginScreen from './screens/LoginScreen';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
