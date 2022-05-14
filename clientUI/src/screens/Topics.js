@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
+    ActivityIndicator,
     ScrollView,
     View,
     StyleSheet,
@@ -10,17 +11,20 @@ import {
 } from 'react-native';
 import CustomButton from '../utils/CustomButton';
 import CustomButton3 from '../utils/CustomButton3';
+import fetchExample from './fetchExample';
 
 import SQLite from 'react-native-sqlite-storage';
+import { FlatList } from 'react-native-gesture-handler';
+import FetchExample from './fetchExample';
 
-const db = SQLite.openDatabase(
-    {
-        name: 'MainDB',
-        location: 'default',
-    },
-    () => { },
-    error => { console.log(error) }
-);
+// const db = SQLite.openDatabase(
+//     {
+//         name: 'MainDB',
+//         location: 'default',
+//     },
+//     () => { },
+//     error => { console.log(error) }
+// );
 
 export default function Topics({ navigation }) {
 
@@ -28,10 +32,17 @@ export default function Topics({ navigation }) {
     const navigatePage = () => {
         navigation.navigate('Posts');
     }
-    
 
-    return (
-        <View style={styles.body} >
+    const [data, setData] = useState([]);
+    const [isLoading, setLoading] = useState(true);
+
+  
+
+    return(
+  
+    <View style={styles.body}>
+        
+           <FetchExample/>  
             <Image
                 style={styles.logo}
                 source={require('../../assets/greenplanet.png')}
@@ -101,10 +112,17 @@ export default function Topics({ navigation }) {
                 color='#6ddd3d'
                 onPressFunction={navigatePage}
             />
+            <CustomButton3
+                style={styles.button}
+                title='Warfare and Conflicts'
+                color='#6ddd3d'
+                onPressFunction={navigatePage}
+            />
             </ScrollView>
             
         </View>
-    )
+        
+    );
 }
 
 const styles = StyleSheet.create({

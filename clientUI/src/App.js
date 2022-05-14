@@ -9,6 +9,7 @@ import Post1 from './screens/posts1';
 import Comment1 from './screens/comments1';
 import LoginScreen from './screens/LoginScreen';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import FetchExample2 from './screens/fetchExample2'
 
 const icon = <FontAwesome5 name={'comments'} />;
 
@@ -62,6 +63,10 @@ function App() {
         <Stack.Screen
           name="Comment Environment"
           component={Comment1}
+        />
+        <Stack.Screen
+          name="Fetch Example"
+          component={FetchExample2}
         />
       </Stack.Navigator>
     </NavigationContainer>
