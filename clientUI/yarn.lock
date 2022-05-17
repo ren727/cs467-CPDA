@@ -6031,6 +6031,11 @@
     "jscodeshift" "^0.13.1"
     "nullthrows" "^1.1.1"
 
+"react-native-dropdown-picker@^5.4.2":
+  "integrity" "sha512-cZBPyN+k52jA9XguFnKoF5tLf31z6gjZ8GijO/pfVNSSEtPwZ14UTUrr87JiiOnMh5K/O2kRzZ/jZN8D0MmUMA=="
+  "resolved" "https://registry.npmjs.org/react-native-dropdown-picker/-/react-native-dropdown-picker-5.4.2.tgz"
+  "version" "5.4.2"
+
 "react-native-gesture-handler@^2.4.1", "react-native-gesture-handler@>= 1.0.0":
   "integrity" "sha512-K3oMiQV7NOVB5RvNlxkyJxU1Gn6m1cYu53MoFA542FVDSTR491d1eQkWDdqy4lW52rfF7IK7eE1LCi+kTJx7jw=="
   "resolved" "https://registry.npmjs.org/react-native-gesture-handler/-/react-native-gesture-handler-2.4.2.tgz"
@@ -6057,7 +6062,7 @@
   "resolved" "https://registry.npmjs.org/react-native-pager-view/-/react-native-pager-view-5.4.15.tgz"
   "version" "5.4.15"
 
-"react-native-paper@^4.12.0", "react-native-paper@>= 3.0.0":
+"react-native-paper@^4.12.1", "react-native-paper@>= 3.0.0":
   "integrity" "sha512-xvAkwtRatsDcB/eSBUwoThBAT5Yy32SgKwrfHRUXi/9s5lR2SEuPZwmsZyAaq+bsxtAH1CaIT4CDeVLSaArzyg=="
   "resolved" "https://registry.npmjs.org/react-native-paper/-/react-native-paper-4.12.1.tgz"
   "version" "4.12.1"

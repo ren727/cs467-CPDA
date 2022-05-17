@@ -7,38 +7,26 @@ import {
     StyleSheet,
     Image,
     Text,
-    TextInput,
     Alert,
 } from 'react-native';
+import {TextInput} from 'react-native-paper';
 import CustomButton from '../utils/CustomButton';
 import CustomButton3 from '../utils/CustomButton3';
-
 import SQLite from 'react-native-sqlite-storage';
 import FetchExample2 from './fetchExample2';
+import DropDownPicker from 'react-native-dropdown-picker';
+
 //https://cs467api.uw.r.appspot.com/
 
 export default function Post1({ }) {
     const [post, setPost] = useState('');
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
+    const [getNewData, setGetNewData]  = useState(false);
     //const [password, setPassword] = useState('');
 
 
-    // const [Items, setItems] = useState([
-    //     { key: 1, item: 'How can we save energy?' },
-    //     { key: 2, item: 'We cannot support ourselved without nuclear power?' },
-    //     { key: 3, item: 'What is wrong with overfishing?' },
-    //     { key: 4, item: 'How can we effectively prevent soil erosion?' },
-    //     { key: 5, item: 'How severe is the global warming?' },
-    //     { key: 6, item: 'We have enough water resource?' },
-    //     { key: 7, item: 'The technologies used to predict earthquakes.' },
-    //     { key: 8, item: 'How to measure water contamination' },
-    //     { key: 9, item: 'Air quality in your area' },
-    //     { key: 10, item: 'Major problems with conventional agriculture' },
-    //     { key: 11, item: 'The technologies to purify Lake Michigan' },
-    //   ]);
-
-    const postNew =  () => {
+    const postNew =  () => {    
       const requestOptions = {
           method: 'POST',
           headers: { 'Content-Type': 'application/json',
@@ -54,10 +42,13 @@ export default function Post1({ }) {
       fetch('https://cs467api.uw.r.appspot.com/posts', requestOptions)
       .then((response) => response.json())              //response.json()
       .then((response2) => {
-        if(response !== undefined || response !== null) {
+        if(response2 !== undefined || response2 !== null) {
             console.log('Fetch API POST', response2);
             setContent('');
             setTitle('');
+            setGetNewData(true);
+            setTimeout(() => setGetNewData(false), 300)
+           
             return response2;
           }
       })
@@ -66,53 +57,38 @@ export default function Post1({ }) {
       });
     }
 
-
     return (
         <View style={styles.body} >
-            {/*<Image
-                style={styles.logo}
-                source={require('../../assets/greenplanet.png')}
-    />*/}
+      
             <Text style={styles.text}>
                  Topics -- Environment
             </Text>
       
-      {/*<ScrollView
-               style={styles.bodyP}
-
-  >*/}
-      {/* {
-        Items.map((object) => {
-          return (
-            <View  key={object.key}>   
-              <TouchableOpacity style={{width: 300, height: 88, backgroundColor: '#90ee90', margin:5}} 
-                  onPress={() => 
-                    navigation.navigate('Comment Environment')}>
-                   <Text style={styles.textP}>{object.item}</Text>     
-              </TouchableOpacity>
-              
-            </View>
-          )   //style={styles.itemP}   within <View  Alert.alert('test')
-        })
-      } */}
-    {/*</View></ScrollView> */}
-   <FetchExample2/>
-    <ScrollView keyboardShouldPersistTaps='handled'>
-    <TextInput
-        label = "title"
-        style={styles.input}
-        placeholder='type in a title of your own topic.'
-        onChangeText={(value) => setTitle(value)  }
-        multiline
+     
+    <View style = {{flex: 7}}>
+       <FetchExample2 shouldRefresh={getNewData}/>
+     </View>
+     <ScrollView keyboardShouldPersistTaps='handled'>
+    <View>
+      <TextInput
+          label = 'Title'
+          value = {title}
+          mode = 'outlined'
+          onChangeText = { text => setTitle(text)}
+          style = {styles.textinput1}
       />
-    <TextInput
-        label = "content"
-        style={styles.input}
-        placeholder='type in the content of your topic.'
-        onChangeText={(value) => setContent(value)  }
-        multiline
-      />
-      </ScrollView>
+       <TextInput style = {{ margin:10  }}
+          label = "Content"
+          value = {content}
+           mode = 'outlined'
+           multiline
+           //numberOfLines = {5}
+           onChangeText = {text => setContent(text)}
+           style = {styles.textinput1}
+        />
+       </View>
+   
+     
        <Button
         //onPress={setItems([...Items, {item: comment}])}
         //hitSlop={{ top: 10, bottom: 10, right: 10, left: 10 }}  //increase touchble areas in view/button
@@ -123,16 +99,19 @@ export default function Post1({ }) {
           title = "Post Your Topic"
          color = '#8ec217'    //#6ddd3d  #739f10
          onPress={() => {
-          /* 1. Navigate to the Details route with params */
+         ///* 1. Navigate to the Details route with params ///
           //   navigation.navigate('Fetch Example', {
-          //   title: title,
+          //   title: title,S
           //   content: content,
           // });
           postNew();
-        }}
-      >
+        // callFetchExample();
+        }}>
+      
          
       </Button> 
+      </ScrollView> 
+    {/**/}
       
     </View>
    )
@@ -153,7 +132,7 @@ const styles = StyleSheet.create({
         margin: 20,
     },
     text: {
-        fontSize: 40,
+        fontSize: 22,
         color: '#50bf9e',
         fontFamily: 'NanumPenScript-Regular',
         marginBottom: 55,
@@ -166,14 +145,27 @@ const styles = StyleSheet.create({
         backgroundColor: '#ffffff',
         textAlign: 'center',
         fontSize: 20,
-        marginBottom: 10,
+        marginBottom: 5,
+        marginTop:10,
     },
+    input1: {
+      width: 300,
+      borderWidth: 3,
+      borderColor: '#14758a',  //#555  #177a8f
+      borderRadius: 10,
+      backgroundColor: '#ffffff',
+      textAlign: 'center',
+      fontSize: 20,
+      //marginBottom: 10,
+    
+  },
     button: {
         flex: 1,
        // flexDirection: 'row',
         width: 250,
         height: 70,
-        margin: 15.
+        margin: 15,
+        marginTop: 5
     },
 
     viewbody: {
@@ -205,4 +197,15 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         color: '#90ee90',
     },
+     textinput1: {
+      flex: 1,
+      // flexDirection: 'row',
+       width: 270,
+       height: 50,
+       margin: 5,
+     },
+     scrollView: {
+      flexDirection: 'column',
+    
+     },
 })

@@ -10,9 +10,10 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import {Button, Card} from 'react-native-paper';
 
 
-export default FetchExample2 = ({navigation, route}) => {
+export default FetchExample2 = ({navigation, route, shouldRefresh }) => {
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const [Items, setItems] = useState([]);
@@ -22,20 +23,22 @@ export default FetchExample2 = ({navigation, route}) => {
   //const { content } = route.params;
   //const { content } = route?.params || {};
 
-  const getPosts = async () => {
-     try {
-      const response = await fetch('https://cs467api.uw.r.appspot.com/posts');
-      const json = await response.json();
-      //console.log(json, 'json here')
-      setData(json.posts);
-    } catch (error) {
-       console.error(error, 
-        );
-    } finally {
-      setLoading(false);
-    }
-  }
+   const getPosts = async () => {
+      try {
+      // const response = await fetch('https://cs467api.uw.r.appspot.com/posts?limit=30&offset=10');
+      //https://cs467api.uw.r.appspot.com/users?email=john@cheese.com   example-- a call with email 
+        const response = await fetch('https://cs467api.uw.r.appspot.com/posts?limit=50', {method: 'GET'});
 
+       const json = await response.json();
+      // console.log(json, 'json here')
+       setData(json.posts);  
+     } catch (error) {
+        console.error(error, 
+         );
+     } finally {
+       setLoading(false);
+     }
+  }
 
   const postNew =  () => {
     const requestOptions = {
@@ -70,55 +73,80 @@ export default FetchExample2 = ({navigation, route}) => {
     },
   };
 
-  fetch('https://cs467api.uw.r.appspot.com/posts/5083538508480512', requestOptions)
+  fetch('https://cs467api.uw.r.appspot.com/posts/5658646574792704', requestOptions)
   .then(response => response.ok)
   .catch((error) => {
       console.error(error);
     });
  }
 
+ const deleteData = (data) => {
+  fetch('https://cs467api.uw.r.appspot.com/posts/' + data.id, {
+     method: 'DELETE',
+     headers: {
+        'Content-Type' : 'application/json'
+     }
+  })
+   .then(data => {
+      // navigation.navigate('Post1')
+     })
+  }
+  const clickedData = (data) => {
+    navigation.navigate('Home', {data:data})
+ }
+  const renderData = (item) => {
+    return (
+       <Card style = {styles.renderStyle}>
+          <Text style = {{fontSize : 20}} onPress = {() =>
+           clickedData(item)}> {item.title}</Text>
+          <Text>{item.content}</Text>
+       </Card>
+    )
+ }
+  
+
   useEffect(() => {
+    console.log('fetching')
     getPosts();
     //postNew();
-   //deletePost();
-    return () => {
-    setData({}); // This worked for me
-   };
-  }, []);
+   // console.log("deleting post")
+     //deletePost();
+    //return () => {
+     //setData({}); // Do not use it unless you understand how this works. After the parent component unmounts, this runs.
+     //};
+  }, [shouldRefresh == true, ]);
 
- return(
-    <View style={{ flex: 1, padding: 24 }}>
-      <ScrollView> 
-      { 
-       data.map((object1, id) => {   // view's attribute style={{ flex: 1, padding: 24 }}
+  // console.log(data," this is data")
+  //return null;
+  return(
+    <View>
+      <ScrollView style = {styles.scrollView}> 
+      {
+        (data || []).map((object, id) => {   // map(object, id) view's attribute style={{ flex: 1, padding: 24 }}   below style = {{height:100}}
+          // console.log(object);
           return (
-            <View  key={id}> 
             
-              <TouchableOpacity key={id} style={{width: 300, height: 88, backgroundColor: '#90ee90', margin:5}} 
+              <TouchableOpacity  key={id} style={{width: 300, height: 88, backgroundColor: '#90ee90', margin:5}} 
                   >
-                   <Text style={{fontSize: 15, fontWeight: 'bold'}}>{object1.title}</Text> 
-                   <Text style={{paddingTop:5}}>{object1.content}</Text>     
+                   <Text  style={{fontSize: 15, fontWeight: 'bold'}}>{object.title}</Text> 
+                   <Text  style={{paddingTop:5}}>{object.content}</Text> 
+                   <Button 
+                      icon = 'delete'
+                      mode='contained'
+                      onPress = {() => deleteData(object)}
+                       color = '#8ec217'    //#6ddd3d  #739f10
+                         >Delete</Button>
               </TouchableOpacity>
               
-            </View> 
+            
           ) 
         })
-     }
-    
-     </ScrollView> 
-     
       
-     {/*<FlatList
-          data={data}
-          keyExtractor={({ id }, index) => id}
-          renderItem={({ item }) => (
-            <Text style={styles.titleText}>{item.title}</Text>
-            
-          )}
-          />*/}
-        
-      </View>
+      }
+      </ScrollView>  
     
+    </View>
+        
 
   );
   };
@@ -129,4 +157,20 @@ const styles = StyleSheet.create({
     fontSize: 15,
     //fontWeight: "bold"
   },
+    scrollView: {
+      flexDirection: 'column',
+    },
+    buttonInput: {
+      flex: 1,
+     // flexDirection: 'row',
+      width: 150,
+      height: 50,
+      margin: 5,
+      borderRadius: 5,
+      color: '#90ee90',
+  },
+  renderStyle: {
+      margin: 10, 
+      padding: 10,
+  }
 });
