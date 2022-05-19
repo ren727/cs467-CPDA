@@ -20,6 +20,7 @@ def index():
     return 'Hello World'
 
 
+
 @app.route('/users', methods=['GET', 'POST'])
 def resource_users():
     if request.method == 'GET':
@@ -47,12 +48,16 @@ def resource_user(id):
         raise ErrorResponse({"Error": "Method not recognized"}, 405)
 
 
+@app.route('/users', methods=['POST'])
+def resource_user_with_email():
+    return users.fetch_user_with_email(request)
+
 @app.route('/posts', methods=['GET', 'POST'])
 def resource_posts():
     base_url = request.base_url
     if request.method == 'GET':
-        q_limit = int(request.args.get('limit', '10'))
-        q_offset = int(request.args.get('offset', '0'))
+        q_limit = int(request.args.get('limit', '10'))    
+        q_offset = int(request.args.get('offset', '10'))
         return posts.fetch_posts(base_url, q_limit, q_offset), 200
 
     elif request.method == 'POST':
