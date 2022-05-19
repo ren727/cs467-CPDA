@@ -4,7 +4,7 @@ from . import timezone
 
 from error import ErrorResponse
 
-client = datastore.Client()
+client = datastore.Client()   ## Instantiates a client
 
 
 def fetch_users(request):
@@ -20,11 +20,11 @@ def fetch_users(request):
 
 
 def store_new_user(request):
-    content = request.get_json()
+    content = request.get_json()    #request.get_json() converts the JSON object into Python data.
     if validate_user(content):
         time = timezone.get_pacific_time()
 
-        entity = datastore.Entity(key=client.key('users'))
+        entity = datastore.Entity(key=client.key('users'))  ### Prepares the new entity
         entity.update({
             "email": content['email'],
             "created_at": time,
@@ -33,7 +33,7 @@ def store_new_user(request):
             "posts":[],
             "tags":[],
         })
-        client.put(entity)
+        client.put(entity)        ## Saves the entity
 
         entity['id'] = entity.key.id
         entity['self'] = request.url + '/' + str(entity.key.id)
@@ -97,7 +97,5 @@ def validate_user(new_user):
 
     if not isinstance(new_user['email'], str):
         raise ErrorResponse({"Error": "E-mail address is not valid"}, 400)
-
-    # Check if email already exists?
 
     return True
