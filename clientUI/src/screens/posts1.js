@@ -12,7 +12,6 @@ import {
 import {TextInput} from 'react-native-paper';
 import CustomButton from '../utils/CustomButton';
 import CustomButton3 from '../utils/CustomButton3';
-import SQLite from 'react-native-sqlite-storage';
 import FetchExample2 from './fetchExample2';
 import DropDownPicker from 'react-native-dropdown-picker';
 
@@ -44,7 +43,7 @@ export default function Post1({ }) {
       .then((response2) => {
         if(response2 !== undefined || response2 !== null) {
             console.log('Fetch API POST', response2);
-            setContent('');
+            setContent('');   
             setTitle('');
             setGetNewData(true);
             setTimeout(() => setGetNewData(false), 300)
