@@ -16,6 +16,7 @@ import CustomButton2 from '../utils/CustomButton2';
 import SQLite from 'react-native-sqlite-storage';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Icon from 'react-native-vector-icons/AntDesign';
+import Icon1 from 'react-native-vector-icons/FontAwesome';
 
 
 
@@ -55,16 +56,16 @@ export default function Login({ navigation }) {
 
     return (
         <View style={styles.body} >
-            <Image
+            {/*<Image
                 style={styles.logo}
                 source={require('../../assets/greenplanet.png')}
-            />
+    />*/}
             <Text style={styles.textLogo}>
                 Discussion App
             </Text>
-            <Icon
-                         name="questioncircleo"
-                         size={40}
+            <Icon1
+                         name="comments-o"
+                         size={70}
                          color="green"/>
 
 
@@ -120,9 +121,9 @@ const styles = StyleSheet.create({
     },
     textLogo: {
         fontSize: 40,
-        color: '#50bf9e',
+        color: 'green',
         fontFamily: 'NanumPenScript-Regular',
-        marginBottom: 55,
+        marginBottom: 80,
     },
     input: {
         width: 300,
