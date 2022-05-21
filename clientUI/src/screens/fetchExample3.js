@@ -130,13 +130,32 @@ export default function FetchExample3 ({navigation, route, shouldRefresh }) {
               <TouchableOpacity  key={id} style={{width: 300, height: 88, backgroundColor: '#90ee90', margin:5}} 
                   >
                    <Text  style={{fontSize: 15}}>{object.content}</Text> 
-                   
-                   <Button 
+                 <View style ={styles.buttonLayout}>  
+                   {/*<Button 
                       icon = 'delete'
                       mode='contained'
                       onPress = {() => deleteData(object)}
                        color = '#8ec217'    //#6ddd3d  #739f10
-                         >Delete</Button>
+                       width = '27%'
+                      >Delete</Button>*/}
+                    <Button 
+                      icon = 'thumb-up-outline'
+                      mode='contained'
+                      //onPress = {() => deleteData(object)}
+                       color = '#6ddd3d'    //#6ddd3d  #739f10
+                       width = '33%'
+                       style = {styles.buttonLayout1}
+                       
+            
+                         >Upvote</Button>
+                    <Button 
+                      icon = 'thumb-down-outline'
+                      mode='contained'
+                      //onPress = {() => deleteData(object)}
+                       color = '#8ec217'    //#6ddd3d  #739f10
+                       width = '48%'
+                         >Downvote</Button>
+                  </View>
               </TouchableOpacity>
               
             
@@ -161,6 +180,19 @@ const styles = StyleSheet.create({
     scrollView: {
       flexDirection: 'column',
     },
+
+    buttonLayout:{
+     flexDirection: 'row',
+     marginTop: 20,
+     flex: 1,
+     
+
+    },
+    buttonLayout1:{
+        marginRight: 5,
+        
+   
+       },
     buttonInput: {
       flex: 1,
      // flexDirection: 'row',

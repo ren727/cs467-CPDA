@@ -43,7 +43,7 @@ export default function Comments2({props, route }) {
       }
       fetch('https://cs467api.uw.r.appspot.com/posts/'+ post_id +'/comments', requestOptions)
      
-     .then((response) => console.log(response))
+     //.then((response) => console.log(response))
       .then((response) => response.json())              //response.json()
       
       .then((response2) => {
