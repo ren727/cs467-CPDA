@@ -23,10 +23,7 @@ export default function Help({ navigation, route }) {
 
     return (
         <View style={styles.body}>
-            <Image
-                style={styles.logo}
-                source={require('../../assets/greenplanet.png')}
-            />
+           
             <Text style={[
                 //GlobalStyle.CustomFont
                 styles.text
@@ -50,10 +47,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     text: {
-        fontSize: 35,
+        fontSize: 27,
         margin: 10,
-        color: '#50bf9e',
+        color: '#52a22f',
         fontFamily: 'NanumPenScript-Regular',
+        fontWeight: 'bold',
     },
     text1: {
         fontSize: 25,

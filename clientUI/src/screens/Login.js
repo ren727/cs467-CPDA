@@ -66,8 +66,8 @@ export default function Login({ navigation, props, route}) {
             </Text>
             <Icon1
                          name="comments-o"
-                         size={80}
-                         color="green"/>
+                         size={155}
+                         color="#99ef74"/>   
 
 
            <View   style={styles.viewbody}>
@@ -125,8 +125,8 @@ const styles = StyleSheet.create({
         fontSize: 27,
         color: 'green',
         fontFamily: 'NanumPenScript-Regular',
-        marginBottom: 80,
-        marginTop: 20,
+        marginBottom: 70,
+        marginTop: 30,
         fontWeight: 'bold',
     },
     input: {

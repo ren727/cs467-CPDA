@@ -27,11 +27,11 @@ export default function FetchExample3 ({navigation, route, shouldRefresh }) {
       try {
       // const response = await fetch('https://cs467api.uw.r.appspot.com/posts?limit=30&offset=10');
       //https://cs467api.uw.r.appspot.com/users?email=john@cheese.com   example-- a call with email 
-        const response = await fetch('https://cs467api.uw.r.appspot.com/comments?limit=50', {method: 'GET'});
+        const response = await fetch('https://cs467api.uw.r.appspot.com/comments?limit=30', {method: 'GET'});
 
        const json = await response.json();
-      // console.log(json, 'json here')
-       setData(json.posts);  
+       console.log(json, 'json here, testing')
+       setData(json.comments);  
      } catch (error) {
         console.error(error, 
          );
@@ -40,29 +40,29 @@ export default function FetchExample3 ({navigation, route, shouldRefresh }) {
      }
   }
 
-  const postNew =  () => {
-    const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json',
-                    'Accept': 'application/json',},
-        body: JSON.stringify({ 
-            user_id: '12249',
-            title,  //not do  title: title  
-           // key: value - title,
-            content,
-            categories: '7',
+//   const postNew =  () => {
+//     const requestOptions = {
+//         method: 'POST',
+//         headers: { 'Content-Type': 'application/json',
+//                     'Accept': 'application/json',},
+//         body: JSON.stringify({ 
+//             user_id: '12249',
+//             title,  //not do  title: title  
+//            // key: value - title,
+//             content,
+//             categories: '7',
             
-        })
-    }
-    fetch('https://cs467api.uw.r.appspot.com/comments', requestOptions)
-    .then((response) => response.json())              //response.json()
-    .then((json) => {
-        console.log('Fetch API POST', json.data);
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-  }
+//         })
+//     }
+//     fetch('https://cs467api.uw.r.appspot.com/comments', requestOptions)
+//     .then((response) => response.json())              //response.json()
+//     .then((json) => {
+//         console.log('Fetch API POST', json.data);
+//     })
+//     .catch((error) => {
+//       console.error(error);
+//     });
+//   }
 
 
  const deletePost =  () => {
@@ -129,8 +129,8 @@ export default function FetchExample3 ({navigation, route, shouldRefresh }) {
             
               <TouchableOpacity  key={id} style={{width: 300, height: 88, backgroundColor: '#90ee90', margin:5}} 
                   >
-                   <Text  style={{fontSize: 15, fontWeight: 'bold'}}>{object.title}</Text> 
-                   <Text  style={{paddingTop:5}}>{object.content}</Text> 
+                   <Text  style={{fontSize: 15}}>{object.content}</Text> 
+                   
                    <Button 
                       icon = 'delete'
                       mode='contained'

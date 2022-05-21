@@ -35,13 +35,13 @@ export default function Comments2({props, route }) {
           'Accept': 'application/json',},  //    'Accept': 'application/json',
 
           body: JSON.stringify({ 
-              user_id: '12222',
-              post_id: post_id,
+              user_id: '5704568633556992',
+              post_id,
               content,
               
           })
       }
-      fetch('https://cs467api.uw.r.appspot.com/comments', requestOptions)
+      fetch('https://cs467api.uw.r.appspot.com/posts/'+ post_id +'/comments', requestOptions)
      
      .then((response) => console.log(response))
       .then((response) => response.json())              //response.json()
