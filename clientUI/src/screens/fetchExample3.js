@@ -11,14 +11,12 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import {Button, Card} from 'react-native-paper';
-import { useNavigation } from '@react-navigation/native';
 
 
-export default function FetchExample2 ({navigation, route, shouldRefresh }) {
+export default function FetchExample3 ({navigation, route, shouldRefresh }) {
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const [Items, setItems] = useState([]);
-  const navigation1 = useNavigation();
 
    //const { title } = route.params;
   //const { title } = route?.params || {};
@@ -29,7 +27,7 @@ export default function FetchExample2 ({navigation, route, shouldRefresh }) {
       try {
       // const response = await fetch('https://cs467api.uw.r.appspot.com/posts?limit=30&offset=10');
       //https://cs467api.uw.r.appspot.com/users?email=john@cheese.com   example-- a call with email 
-        const response = await fetch('https://cs467api.uw.r.appspot.com/posts?limit=50', {method: 'GET'});
+        const response = await fetch('https://cs467api.uw.r.appspot.com/comments?limit=50', {method: 'GET'});
 
        const json = await response.json();
       // console.log(json, 'json here')
@@ -56,7 +54,7 @@ export default function FetchExample2 ({navigation, route, shouldRefresh }) {
             
         })
     }
-    fetch('https://cs467api.uw.r.appspot.com/posts', requestOptions)
+    fetch('https://cs467api.uw.r.appspot.com/comments', requestOptions)
     .then((response) => response.json())              //response.json()
     .then((json) => {
         console.log('Fetch API POST', json.data);
@@ -83,7 +81,7 @@ export default function FetchExample2 ({navigation, route, shouldRefresh }) {
  }
 
  const deleteData = (data) => {
-  fetch('https://cs467api.uw.r.appspot.com/posts/' + data.id, {
+  fetch('https://cs467api.uw.r.appspot.com/comments/' + data.id, {
      method: 'DELETE',
      headers: {
         'Content-Type' : 'application/json'
@@ -95,9 +93,8 @@ export default function FetchExample2 ({navigation, route, shouldRefresh }) {
   }
   
   const clickedData = (data) => {
-    navigation1.navigate('Comments Page', {data1:data})
+    navigation.navigate('Comment Page', {data:data})
  }
-
   const renderData = (item) => {
     return (
        <Card style = {styles.renderStyle}>
@@ -131,8 +128,7 @@ export default function FetchExample2 ({navigation, route, shouldRefresh }) {
           return (
             
               <TouchableOpacity  key={id} style={{width: 300, height: 88, backgroundColor: '#90ee90', margin:5}} 
-              onPress = {() =>
-                clickedData(object)}  >
+                  >
                    <Text  style={{fontSize: 15, fontWeight: 'bold'}}>{object.title}</Text> 
                    <Text  style={{paddingTop:5}}>{object.content}</Text> 
                    <Button 
@@ -177,8 +173,5 @@ const styles = StyleSheet.create({
   renderStyle: {
       margin: 10, 
       padding: 10,
-  }
-  buttonInput2:{
-    
   }
 });

@@ -11,6 +11,8 @@ import LoginScreen from './screens/LoginScreen';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import FetchExample2 from './screens/fetchExample2'
 import RegisterScreen from './screens/autho/Register';
+import Comments2 from './screens/comments2';
+import FetchExample3 from './screens/fetchExample3';
 
 const icon = <FontAwesome5 name={'comments'} />;
 
@@ -72,6 +74,14 @@ function App() {
         <Stack.Screen
           name="Register Page"
           component={RegisterScreen}
+        />
+        <Stack.Screen
+          name="Comments Page"
+          component={Comments2}
+        />
+         <Stack.Screen
+          name="Fetch Example2"
+          component={FetchExample3}
         />
       </Stack.Navigator>
     </NavigationContainer>

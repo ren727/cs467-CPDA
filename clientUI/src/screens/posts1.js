@@ -130,9 +130,10 @@ const styles = StyleSheet.create({
     },
     text: {
         fontSize: 22,
-        color: '#50bf9e',
+        color: '#52a22f',  //#50bf9e  #6ddd3d  #518524
         fontFamily: 'NanumPenScript-Regular',
         marginBottom: 55,
+        fontWeight: 'bold',
     },
     input: {
         width: 300,

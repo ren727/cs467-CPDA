@@ -27,10 +27,14 @@ import FetchExample from './fetchExample';
 // );
 
 export default function Topics({ navigation }) {
+    const data3 = '52222222';
 
 
     const navigatePage = () => {
         navigation.navigate('Posts');
+    }
+    const navigatePage1 = () => {
+        navigation.navigate('Home', {data2:data3});
     }
 
     const [data, setData] = useState([]);
@@ -41,19 +45,14 @@ export default function Topics({ navigation }) {
     return(
   
     <View style={styles.body}>
-        
-           <FetchExample/>  
-            <Image
-                style={styles.logo}
-                source={require('../../assets/greenplanet.png')}
-            />
+           
             <Text style={styles.text}>
                  Topic Categories
             </Text>
            <ScrollView   style={styles.viewbody}>
             <CustomButton3 
                 style={styles.button}
-                title='Environment'
+                title='All Topics'
                 color='#6ddd3d'
                 onPressFunction={navigatePage}
                // onPress={() => navigation.navigate('Home')}
@@ -62,7 +61,7 @@ export default function Topics({ navigation }) {
                 style={styles.button}
                 title='Civil Rights'
                 color='#6ddd3d'
-                onPressFunction={navigatePage}
+                onPressFunction={navigatePage1}
             />
             <CustomButton3
                 style={styles.button}
@@ -138,10 +137,12 @@ const styles = StyleSheet.create({
         margin: 20,
     },
     text: {
-        fontSize: 40,
-        color: '#50bf9e',
+        fontSize: 22,
+        fontWeight: 'bold',
+        color: '#52a22f',
         fontFamily: 'NanumPenScript-Regular',
         marginBottom: 55,
+        marginTop: 22,
     },
     input: {
         width: 300,

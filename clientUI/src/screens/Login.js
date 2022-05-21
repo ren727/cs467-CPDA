@@ -31,10 +31,11 @@ const db = SQLite.openDatabase(
     error => { console.log(error) }
 );
 
-export default function Login({ navigation }) {
+export default function Login({ navigation, props, route}) {
 
     //const [name, setName] = useState('');
     //const [age, setPassword] = useState('');
+    const {data2} = route?.params || {};
    
     
 
@@ -61,11 +62,11 @@ export default function Login({ navigation }) {
                 source={require('../../assets/greenplanet.png')}
     />*/}
             <Text style={styles.textLogo}>
-                Discussion App
+                Discussion App 
             </Text>
             <Icon1
                          name="comments-o"
-                         size={70}
+                         size={80}
                          color="green"/>
 
 
@@ -115,15 +116,18 @@ const styles = StyleSheet.create({
         margin: 20,
     },
     text: {
-        fontSize: 30,
+        fontSize: 33,
         color: '#ffffff',
         marginBottom: 150,
+        
     },
     textLogo: {
-        fontSize: 40,
+        fontSize: 27,
         color: 'green',
         fontFamily: 'NanumPenScript-Regular',
         marginBottom: 80,
+        marginTop: 20,
+        fontWeight: 'bold',
     },
     input: {
         width: 300,
