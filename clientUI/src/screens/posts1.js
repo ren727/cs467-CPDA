@@ -22,9 +22,7 @@ export default function Post1({ }) {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const [getNewData, setGetNewData]  = useState(false);
-    //const [password, setPassword] = useState('');
-
-
+  
     const postNew =  () => {    
       const requestOptions = {
           method: 'POST',
@@ -43,7 +41,7 @@ export default function Post1({ }) {
       .then((response2) => {
         if(response2 !== undefined || response2 !== null) {
             console.log('Fetch API POST', response2);
-            setContent('');   
+            setContent('');   //reset the hooks  
             setTitle('');
             setGetNewData(true);
             setTimeout(() => setGetNewData(false), 300)
@@ -60,7 +58,7 @@ export default function Post1({ }) {
         <View style={styles.body} >
       
             <Text style={styles.text}>
-                 Topics -- Environment
+                 Topics -- All Topics
             </Text>
       
      

@@ -20,6 +20,7 @@ import Icon from 'react-native-vector-icons/AntDesign';
 
 
 
+
 const db = SQLite.openDatabase(
     {
         name: 'MainDB',
@@ -33,6 +34,7 @@ export default function Login({ navigation }) {
 
     //const [name, setName] = useState('');
     //const [age, setPassword] = useState('');
+   
     
 
     const navigatePage = () => {
@@ -45,6 +47,10 @@ export default function Login({ navigation }) {
     const navigatePage2 = () => {
         navigation.navigate('Login Screen');
     }
+
+    const navigatePage3 = () => {
+        navigation.navigate('Register Page');
+    }
     
 
     return (
@@ -55,18 +61,20 @@ export default function Login({ navigation }) {
             />
             <Text style={styles.textLogo}>
                 Discussion App
-           
-
             </Text>
+            <Icon
+                         name="questioncircleo"
+                         size={40}
+                         color="green"/>
+
+
            <View   style={styles.viewbody}>
             <CustomButton 
                 style={styles.button}
                 title='Help'
                 color='#6ddd3d'
                 onPressFunction={navigatePage}
-                
-              
-              
+                 
             />
             
             <CustomButton1
@@ -81,7 +89,7 @@ export default function Login({ navigation }) {
                 style={styles.button}
                 title='Login'
                 color='#6ddd3d'
-                onPressFunction={navigatePage2}
+                onPressFunction={navigatePage3}
             />
 
 

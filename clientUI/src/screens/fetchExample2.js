@@ -91,6 +91,7 @@ export default FetchExample2 = ({navigation, route, shouldRefresh }) => {
       // navigation.navigate('Post1')
      })
   }
+  
   const clickedData = (data) => {
     navigation.navigate('Home', {data:data})
  }
