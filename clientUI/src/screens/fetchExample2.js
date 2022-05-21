@@ -140,6 +140,7 @@ export default function FetchExample2 ({navigation, route, shouldRefresh }) {
                       mode='contained'
                       onPress = {() => deleteData(object)}
                        color = '#8ec217'    //#6ddd3d  #739f10
+                       
                          >Delete</Button>
               </TouchableOpacity>
               
@@ -177,8 +178,8 @@ const styles = StyleSheet.create({
   renderStyle: {
       margin: 10, 
       padding: 10,
-  }
+  },
   buttonInput2:{
-    
+
   }
 });
