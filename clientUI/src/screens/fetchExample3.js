@@ -30,7 +30,7 @@ export default function FetchExample3 ({navigation, route, shouldRefresh }) {
         const response = await fetch('https://cs467api.uw.r.appspot.com/comments?limit=30', {method: 'GET'});
 
        const json = await response.json();
-       console.log(json, 'json here, testing')
+       //console.log(json, 'json here, testing')
        setData(json.comments);  
      } catch (error) {
         console.error(error, 
@@ -38,6 +38,10 @@ export default function FetchExample3 ({navigation, route, shouldRefresh }) {
      } finally {
        setLoading(false);
      }
+  }
+
+  const upvoteCount = () => {
+    return ( data.upvote + 1)
   }
 
 //   const postNew =  () => {
@@ -126,8 +130,7 @@ export default function FetchExample3 ({navigation, route, shouldRefresh }) {
         (data || []).map((object, id) => {   // map(object, id) view's attribute style={{ flex: 1, padding: 24 }}   below style = {{height:100}}
           // console.log(object);
           return (
-            
-              <TouchableOpacity  key={id} style={{width: 300, height: 88, backgroundColor: '#90ee90', margin:5}} 
+              <TouchableOpacity  key={id} style={{width: 300, height: 110, backgroundColor: '#90ee90', margin:5}} 
                   >
                    <Text  style={{fontSize: 15}}>{object.content}</Text> 
                  <View style ={styles.buttonLayout}>  
@@ -143,17 +146,20 @@ export default function FetchExample3 ({navigation, route, shouldRefresh }) {
                       mode='contained'
                       //onPress = {() => deleteData(object)}
                        color = '#6ddd3d'    //#6ddd3d  #739f10
-                       width = '33%'
+                       width = '44%'
+                       labelStyle={{fontSize: 10}}
                        style = {styles.buttonLayout1}
-                       
+                       height = '60%'
             
-                         >Upvote</Button>
+                         >Upvote {data.upvote}</Button>
                     <Button 
                       icon = 'thumb-down-outline'
                       mode='contained'
                       //onPress = {() => deleteData(object)}
                        color = '#8ec217'    //#6ddd3d  #739f10
                        width = '48%'
+                       labelStyle={{fontSize: 12}}
+                       height = '70%'
                          >Downvote</Button>
                   </View>
               </TouchableOpacity>

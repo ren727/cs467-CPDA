@@ -38,6 +38,7 @@ export default function Comments2({props, route }) {
               user_id: '5704568633556992',
               post_id,
               content,
+              upvote: 2,
               
           })
       }
