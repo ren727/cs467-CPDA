@@ -78,7 +78,7 @@ export default function Post1({ }) {
           label = "Content"
           value = {content}
            mode = 'outlined'
-           multiline
+          // multiline
            //numberOfLines = {5}
            onChangeText = {text => setContent(text)}
            style = {styles.textinput1}

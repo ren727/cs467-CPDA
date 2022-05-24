@@ -17,6 +17,7 @@ export default function FetchExample3 ({navigation, route, shouldRefresh }) {
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const [Items, setItems] = useState([]);
+  const [count, setCount] = useState('');
 
    //const { title } = route.params;
   //const { title } = route?.params || {};
@@ -84,7 +85,7 @@ export default function FetchExample3 ({navigation, route, shouldRefresh }) {
     });
  }
 
- const deleteData = (data) => {
+ const deleteData = (data) => {   //delete comments
   fetch('https://cs467api.uw.r.appspot.com/comments/' + data.id, {
      method: 'DELETE',
      headers: {
@@ -95,6 +96,36 @@ export default function FetchExample3 ({navigation, route, shouldRefresh }) {
       // navigation.navigate('Post1')
      })
   }
+
+    const editComments =  (object) => { 
+      const upvote = object.upvote + 1; //for upvote
+      console.log(upvote)
+      const requestOptions = {
+             method: 'PATCH',
+             headers: { 'Content-Type': 'application/json',
+                         'Accept': 'application/json',
+                        },
+             body: JSON.stringify({ 
+                 upvote,
+             })
+         }
+         fetch('https://cs467api.uw.r.appspot.com/comments/' + object.id, requestOptions)
+         .then((response) => response.json())              //response.json()
+      
+         .then((response2) => {
+           if(response2 !== undefined || response2 !== null) {
+               console.log('Fetch API POST', response2);
+               //setContent('');   //reset the hooks 
+              // setGetNewData(true);
+               //setTimeout(() => setGetNewData(false), 300)
+              
+               return response2;
+             }
+         })
+         .catch((error) => {
+           console.log(error, 'error');
+         });
+        }
   
   const clickedData = (data) => {
     navigation.navigate('Comment Page', {data:data})
@@ -125,6 +156,7 @@ export default function FetchExample3 ({navigation, route, shouldRefresh }) {
   //return null;
   return(
     <View>
+      
       <ScrollView style = {styles.scrollView}> 
       {
         (data || []).map((object, id) => {   // map(object, id) view's attribute style={{ flex: 1, padding: 24 }}   below style = {{height:100}}
@@ -139,28 +171,32 @@ export default function FetchExample3 ({navigation, route, shouldRefresh }) {
                       mode='contained'
                       onPress = {() => deleteData(object)}
                        color = '#8ec217'    //#6ddd3d  #739f10
-                       width = '27%'
-                      >Delete</Button>*/}
+                       width = '10%'
+                      ></Button>*/}
                     <Button 
                       icon = 'thumb-up-outline'
                       mode='contained'
-                      //onPress = {() => deleteData(object)}
+                       onPress = {() => 
+                          //setCount(object.upvote + 1)}
+                          //console.log(count)}
+                          editComments(object)}
                        color = '#6ddd3d'    //#6ddd3d  #739f10
-                       width = '44%'
+                       //width = '30'    //'44%'
                        labelStyle={{fontSize: 10}}
                        style = {styles.buttonLayout1}
-                       height = '60%'
+                      // height = '30'  //'60%'
             
-                         >Upvote {data.upvote}</Button>
+                         >Upvote {object.upvote}</Button>
                     <Button 
                       icon = 'thumb-down-outline'
                       mode='contained'
                       //onPress = {() => deleteData(object)}
                        color = '#8ec217'    //#6ddd3d  #739f10
-                       width = '48%'
-                       labelStyle={{fontSize: 12}}
-                       height = '70%'
-                         >Downvote</Button>
+                      // width = '48%'
+                       labelStyle={{fontSize: 10}}
+                       style = {styles.buttonLayout1}
+                       //height = '60%'
+                         >Downvote {object.downvote}</Button>
                   </View>
               </TouchableOpacity>
               
@@ -196,6 +232,9 @@ const styles = StyleSheet.create({
     },
     buttonLayout1:{
         marginRight: 5,
+        marginBottom: 2,
+        height:35,
+        width: 120,
         
    
        },

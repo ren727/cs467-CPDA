@@ -95,7 +95,7 @@ export default function FetchExample2 ({navigation, route, shouldRefresh }) {
   }
   
   const clickedData = (data) => {
-    navigation1.navigate('Comments Page', {data1:data})
+    navigation1.navigate('Comments Page', {data1:data}) //send data about posts to comment page.
  }
 
   const renderData = (item) => {

@@ -6021,6 +6021,11 @@
   "resolved" "https://registry.npmjs.org/react-is/-/react-is-16.13.1.tgz"
   "version" "16.13.1"
 
+"react-native-bootstrap@^0.1.0":
+  "integrity" "sha1-c8/0ibf9diSEBhSshRtlY4rlqus="
+  "resolved" "https://registry.npmjs.org/react-native-bootstrap/-/react-native-bootstrap-0.1.0.tgz"
+  "version" "0.1.0"
+
 "react-native-codegen@^0.0.13":
   "integrity" "sha512-rCh1P+s0Q4N6vNgS97ckafbhJRztz22+0l0VZoyQC06F07J98kI5cUByH0ATypPRIdpkMbAZc59DoPdDFc01bg=="
   "resolved" "https://registry.npmjs.org/react-native-codegen/-/react-native-codegen-0.0.13.tgz"
