@@ -10,8 +10,9 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import {Button, Card} from 'react-native-paper';
+//import {Button, Card} from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
+import { Button, ButtonGroup, withTheme} from "@rneui/base";
 
 
 export default function FetchExample2 ({navigation, route, shouldRefresh }) {
@@ -130,18 +131,47 @@ export default function FetchExample2 ({navigation, route, shouldRefresh }) {
           // console.log(object);
           return (
             
-              <TouchableOpacity  key={id} style={{width: 300, height: 88, backgroundColor: '#90ee90', margin:5}} 
-              onPress = {() =>
+              <TouchableOpacity  key={id} style={{width: 335, height: 88, backgroundColor: '#ffff', margin:5, 
+                 borderWidth: 2, borderRadius: 5, borderColor: '#878181'}} 
+                 onPress = {() =>
                 clickedData(object)}  >
+                 <ScrollView> 
                    <Text  style={{fontSize: 15, fontWeight: 'bold'}}>{object.title}</Text> 
                    <Text  style={{paddingTop:5}}>{object.content}</Text> 
-                   <Button 
+                  </ScrollView>
+                  {/*<Button 
                       icon = 'delete'
                       mode='contained'
                       onPress = {() => deleteData(object)}
                        color = '#8ec217'    //#6ddd3d  #739f10
                        
-                         >Delete</Button>
+                 >Delete</Button>*/}
+                 <Button
+                   raised
+                  title="delete"
+                   onPress = {() => deleteData(object)}
+                   icon={{
+                   name: 'trash',
+                   type: 'font-awesome',
+                  size: 15,
+                  color: 'white',
+                   
+                  }}
+                   iconContainerStyle={{ marginRight: 10 }}
+                   titleStyle={{ fontWeight: '700' }}
+                  buttonStyle={{
+                   backgroundColor: 'rgba(90, 154, 230, 1)',
+                   borderColor: 'transparent',
+                   borderWidth: 0,
+                   borderRadius: 30,
+                  }}
+                  containerStyle={{
+                    width: 88,
+                    marginHorizontal: 220,
+                    marginVertical: 2,
+                  }}
+              
+                />
               </TouchableOpacity>
               
             
@@ -180,6 +210,7 @@ const styles = StyleSheet.create({
       padding: 10,
   },
   buttonInput2:{
+     // borderWidth: 3,
 
   }
 });

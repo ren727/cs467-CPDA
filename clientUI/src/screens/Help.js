@@ -8,6 +8,7 @@ import {
     Alert,
     TextInput,
 } from 'react-native';
+import { Button, ButtonGroup, withTheme} from "@rneui/base";
 import CustomButton from '../utils/CustomButton';
 import GlobalStyle from '../utils/GlobalStyle';
 import { NavigationContainer } from '@react-navigation/native';
@@ -19,6 +20,7 @@ export default function Help({ navigation, route }) {
 
     const [name, setName] = useState('');
     const [age, setPassword] = useState('');
+    
    
 
     return (
@@ -30,12 +32,139 @@ export default function Help({ navigation, route }) {
             ]}>
                 Welcome to "Discussion App" !
             </Text>
-            <Text style={[
-                //GlobalStyle.CustomFont,
-                styles.text1
-            ]}>
-                General explanations of this app
-            </Text>
+            <Button
+              title={'React Native Elements'}
+              containerStyle={{
+                width: 200,
+                marginHorizontal: 50,
+                marginVertical: 10,
+              }}
+            />
+            <Button
+              title="Basic Button"
+              buttonStyle={{
+                backgroundColor: 'rgba(78, 116, 289, 1)',
+                borderRadius: 3,
+              }}
+              containerStyle={{
+                width: 200,
+                marginHorizontal: 50,
+                marginVertical: 10,
+              }}
+            />
+              
+              <Button
+              title="Secondary"
+              buttonStyle={{ backgroundColor: 'rgba(127, 220, 103, 1)' }}
+              containerStyle={{
+                height: 40,
+                width: 200,
+                marginHorizontal: 50,
+                marginVertical: 10,
+              }}
+              titleStyle={{
+                color: 'white',
+                marginHorizontal: 20,
+              }}
+            />
+             <Button
+              title="Raised Button"
+              buttonStyle={{
+                borderColor: 'rgba(78, 116, 289, 1)',
+              }}
+              type="outline"
+              raised
+              titleStyle={{ color: 'rgba(78, 116, 289, 1)' }}
+              containerStyle={{
+                width: 200,
+                marginHorizontal: 50,
+                marginVertical: 10,
+              }}
+            />
+             
+             <Button
+              containerStyle={{
+                width: 200,
+                marginHorizontal: 50,
+                marginVertical: 10,
+              }}
+              title="Clear Button"
+              type="clear"
+              titleStyle={{ color: 'rgba(78, 116, 289, 1)' }}
+            />
+             <Button
+              title="HOME"
+              icon={{
+                name: 'home',
+                type: 'font-awesome',
+                size: 15,
+                color: 'white',
+              }}
+              iconContainerStyle={{ marginRight: 10 }}
+              titleStyle={{ fontWeight: '700' }}
+              buttonStyle={{
+                backgroundColor: 'rgba(90, 154, 230, 1)',
+                borderColor: 'transparent',
+                borderWidth: 0,
+                borderRadius: 30,
+              }}
+              containerStyle={{
+                width: 200,
+                marginHorizontal: 50,
+                marginVertical: 10,
+              }}
+            />
+           <Button
+              title="PROFILE"
+              icon={{
+                name: 'user',
+                type: 'font-awesome',
+                size: 15,
+                color: 'white',
+              }}
+              iconRight
+              iconContainerStyle={{ marginLeft: 10 }}
+              titleStyle={{ fontWeight: '700' }}
+              buttonStyle={{
+                backgroundColor: 'rgba(199, 43, 98, 1)',
+                borderColor: 'transparent',
+                borderWidth: 0,
+                borderRadius: 30,
+              }}
+              containerStyle={{
+                width: 200,
+                marginHorizontal: 50,
+                marginVertical: 10,
+              }}
+            />
+             <Button
+              title="Outline Button"
+              buttonStyle={{
+                borderColor: 'rgba(78, 116, 289, 1)',
+              }}
+              type="outline"
+              titleStyle={{ color: 'rgba(78, 116, 289, 1)' }}
+              containerStyle={{
+                width: 200,
+                marginHorizontal: 50,
+                marginVertical: 10,
+              }}
+            />
+            <Button
+              title="Light"
+              buttonStyle={{
+                backgroundColor: 'rgba(244, 244, 244, 1)',
+                borderRadius: 3,
+              }}
+              containerStyle={{
+                height: 40,
+                width: 200,
+                marginHorizontal: 50,
+                marginVertical: 10,
+              }}
+              titleStyle={{ marginHorizontal: 20, color: 'black' }}
+            />
+            
         </View>
     )
         }
@@ -47,7 +176,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     text: {
-        fontSize: 27,
+        fontSize: 18,
         margin: 10,
         color: '#52a22f',
         fontFamily: 'NanumPenScript-Regular',

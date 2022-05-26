@@ -30,7 +30,7 @@ function App() {
           },
           headerTintColor: '#ffffff',
           headerTitleStyle: {
-            fontSize: 25,
+            fontSize: 18,
             fontWeight: 'bold'
           }
         }}

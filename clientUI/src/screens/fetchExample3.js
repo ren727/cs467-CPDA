@@ -162,8 +162,8 @@ export default function FetchExample3 ({navigation, route, shouldRefresh }) {
         (data || []).map((object, id) => {   // map(object, id) view's attribute style={{ flex: 1, padding: 24 }}   below style = {{height:100}}
           // console.log(object);
           return (
-              <TouchableOpacity  key={id} style={{width: 300, height: 110, backgroundColor: '#90ee90', margin:5}} 
-                  >
+              <TouchableOpacity key={id} style={{width: 335, height: 88, backgroundColor: '#ffff', margin:5, 
+              borderWidth: 2, borderRadius: 5, borderColor: '#878181'}} >
                    <Text  style={{fontSize: 15}}>{object.content}</Text> 
                  <View style ={styles.buttonLayout}>  
                    {/*<Button 
@@ -175,12 +175,12 @@ export default function FetchExample3 ({navigation, route, shouldRefresh }) {
                       ></Button>*/}
                     <Button 
                       icon = 'thumb-up-outline'
-                      mode='contained'
+                      mode='text'
                        onPress = {() => 
                           //setCount(object.upvote + 1)}
                           //console.log(count)}
                           editComments(object)}
-                       color = '#6ddd3d'    //#6ddd3d  #739f10
+                          color = '#6d8238'    //#6ddd3d  #739f10  #6d8238
                        //width = '30'    //'44%'
                        labelStyle={{fontSize: 10}}
                        style = {styles.buttonLayout1}
@@ -189,9 +189,9 @@ export default function FetchExample3 ({navigation, route, shouldRefresh }) {
                          >Upvote {object.upvote}</Button>
                     <Button 
                       icon = 'thumb-down-outline'
-                      mode='contained'
+                      mode='text'
                       //onPress = {() => deleteData(object)}
-                       color = '#8ec217'    //#6ddd3d  #739f10
+                       color = '#6d8238'    //#6ddd3d  #739f10
                       // width = '48%'
                        labelStyle={{fontSize: 10}}
                        style = {styles.buttonLayout1}

@@ -66,7 +66,7 @@ export default function Comments2({props, route }) {
         <View style={styles.body} >
       
             <Text style={styles.text}>
-                 Comments -- {data1.title}
+                 {data1.title}
             </Text>
       
      
@@ -78,7 +78,8 @@ export default function Comments2({props, route }) {
       <TextInput
           label = 'Comments'
           value = {content}
-          mode = 'outlined'
+          mode = 'flat'
+          placeholder='Enter your comment'
           onChangeText = { text => setContent(text)}
           style = {styles.textinput1}
           //multiline
@@ -92,9 +93,16 @@ export default function Comments2({props, route }) {
         //android_ripple={{ color: '#00f' }} //blue
         //style={({ pressed }) => [
           //{ backgroundColor: pressed ? '#dddddd' : '#00ff00' }, //light gray    green
-          style = {styles.buttonInput}
+         
+         mode='contained'
+         style = {styles.buttonInput}
           title = "Post Your Comment"
-         color = '#8ec217'    //#6ddd3d  #739f10
+         color = 'rgba(78, 116, 289, 1)'    //#6ddd3d  #739f10  #8ec217
+
+     
+
+
+
          onPress={() => {
          ///* 1. Navigate to the Details route with params ///
           //   navigation.navigate('Fetch Example', {
@@ -108,7 +116,7 @@ export default function Comments2({props, route }) {
          
       </Button> 
       </ScrollView> 
-    {/**/}
+    
       
     </View>
    )
@@ -129,10 +137,10 @@ const styles = StyleSheet.create({
         margin: 20,
     },
     text: {
-        fontSize: 22,
+        fontSize: 18,
         color: '#52a22f',
         fontFamily: 'NanumPenScript-Regular',
-        marginBottom: 55,
+        marginBottom: 22,
     },
     input: {
         width: 300,
@@ -186,18 +194,17 @@ const styles = StyleSheet.create({
         margin: 10,
       },
       buttonInput: {
-        flex: 1,
+       // flex: 1,
        // flexDirection: 'row',
-        width: 150,
+        width: 110,
         height: 50,
         margin: 5,
         borderRadius: 5,
-        color: '#90ee90',
     },
      textinput1: {
       flex: 1,
       // flexDirection: 'row',
-       width: 270,
+       width: 300,
        height: 50,
        margin: 5,
      },
