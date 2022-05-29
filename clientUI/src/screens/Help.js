@@ -55,104 +55,13 @@ export default function Help({ navigation }) {
                 width: 200,
                 marginHorizontal: 50,
                 marginVertical: 10,
-              }}
-            />
-            
-             <Button
-              title="Raised Button"
-              buttonStyle={{
-                borderColor: 'rgba(78, 116, 289, 1)',
-              }}
-              type="outline"
-              raised
-              titleStyle={{ color: 'rgba(78, 116, 289, 1)' }}
-              containerStyle={{
-                width: 200,
-                marginHorizontal: 50,
-                marginVertical: 10,
-              }}
-            />
-             
-             <Button
-              containerStyle={{
-                width: 200,
-                marginHorizontal: 50,
-                marginVertical: 10,
-              }}
-              title="Clear Button"
-              type="clear"
-              titleStyle={{ color: 'rgba(78, 116, 289, 1)' }}
-            />
-             <Button
-              title="HOME"
-              icon={{
-                name: 'home',
-                type: 'font-awesome',
-                size: 15,
-                color: 'white',
-              }}
-              iconContainerStyle={{ marginRight: 10 }}
-              titleStyle={{ fontWeight: '700' }}
-              buttonStyle={{
-                backgroundColor: 'rgba(90, 154, 230, 1)',
-                borderColor: 'transparent',
-                borderWidth: 0,
-                borderRadius: 30,
-              }}
-              containerStyle={{
-                width: 200,
-                marginHorizontal: 50,
-                marginVertical: 10,
-              }}
-            />
-          
-             <Button
-              title="Outline Button"
-              buttonStyle={{
-                borderColor: 'rgba(78, 116, 289, 1)',
-              }}
-              type="outline"
-              titleStyle={{ color: 'rgba(78, 116, 289, 1)' }}
-              containerStyle={{
-                width: 200,
-                marginHorizontal: 50,
-                marginVertical: 10,
-              }}
-            />
-            <Button
-              title="Light"
-              buttonStyle={{
-                backgroundColor: 'rgba(244, 244, 244, 1)',
-                borderRadius: 3,
-              }}
-              containerStyle={{
-                height: 40,
-                width: 200,
-                marginHorizontal: 50,
-                marginVertical: 10,
-              }}
-              titleStyle={{ marginHorizontal: 20, color: 'black' }}
-            />
-        <List.Section title="Accordions">
-      <List.Accordion
-        title="Uncontrolled Accordion"
-        left={props => <List.Icon {...props} icon="folder" />}>
-        <List.Item title="First item"/>
-        <List.Item title="Second item" />
-      </List.Accordion>
-
-      <List.Accordion
-        title="Choose A Category"
-        left={props => <List.Icon {...props} icon="folder" />}
-        expanded={expanded}
-        onPress={handlePress}>
-        <List.Item title="Music" onPress={() => { }}/>
-        <List.Item title="Second item" />
-      </List.Accordion>
-    </List.Section>
-    </ScrollView>
+              }}></Button>
+           </ScrollView>
+      
   
             
+            
+
         </View>
     )
         }
