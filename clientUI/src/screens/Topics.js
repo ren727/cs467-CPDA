@@ -235,8 +235,7 @@ export default function Topics({ navigation }) {
                 marginVertical: 10,
               }}
               raised
-          
-       
+              
            onPress={() => {
          ///* 1. Navigate to the Details route with params ///
           //   navigation.navigate('Fetch Example', {
