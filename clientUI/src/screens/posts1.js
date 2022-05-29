@@ -87,8 +87,6 @@ export default function Post1({ }) {
            style = {styles.textinput1}
         />
        </View>
-   
-     
        <Button
         //onPress={setItems([...Items, {item: comment}])}
         //hitSlop={{ top: 10, bottom: 10, right: 10, left: 10 }}  //increase touchble areas in view/button
