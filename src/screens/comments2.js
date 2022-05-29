@@ -71,7 +71,7 @@ export default function Comments2({props, route }) {
       
      
     <View style = {{flex: 7}}>
-       <FetchExample3 shouldRefresh={getNewData} dataComment={post_id}/>
+       <FetchExample3 shouldRefresh={getNewData} postID={post_id}/>
      </View>
      <ScrollView keyboardShouldPersistTaps='handled'>
     <View>

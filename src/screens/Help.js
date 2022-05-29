@@ -17,11 +17,15 @@ import { NavigationContainer, NavigationContainerRefContext } from '@react-navig
 import { createStackNavigator } from '@react-navigation/stack';
 import { List } from 'react-native-paper';
 import { ScrollView } from 'react-native-gesture-handler';
+import { Drawer } from 'react-native-paper';
+
 
 
 
 
 export default function Help({ navigation }) {
+
+  const [active, setActive] = React.useState('');
 
     const [name, setName] = useState('');
     const [age, setPassword] = useState('');
@@ -133,29 +137,13 @@ export default function Help({ navigation }) {
               }}
               titleStyle={{ marginHorizontal: 20, color: 'black' }}
             />
-        <List.Section title="Accordions">
-      <List.Accordion
-        title="Uncontrolled Accordion"
-        left={props => <List.Icon {...props} icon="folder" />}>
-        <List.Item title="First item"/>
-        <List.Item title="Second item" />
-      </List.Accordion>
-
-      <List.Accordion
-        title="Choose A Category"
-        left={props => <List.Icon {...props} icon="folder" />}
-        expanded={expanded}
-        onPress={handlePress}>
-        <List.Item title="Music" onPress={() => { }}/>
-        <List.Item title="Second item" />
-      </List.Accordion>
-    </List.Section>
+       
+           
     </ScrollView>
   
-            
-        </View>
-    )
-        }
+      </View>
+     )
+    }
 
 
 const styles = StyleSheet.create({

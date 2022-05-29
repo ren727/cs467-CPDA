@@ -103,7 +103,7 @@ export default function Topics({ navigation, route }) {
 
       useEffect(() => {
         console.log('fetching')
-        getCategories();
+        //getCategories();
         //postNew();
        // console.log("deleting post")
          //deletePost();
@@ -144,16 +144,7 @@ export default function Topics({ navigation, route }) {
           
        
            onPress={() => {
-         ///* 1. Navigate to the Details route with params ///
-          //   navigation.navigate('Fetch Example', {
-          //   title: title,S
-          //   content: content,
-          // });
-           //getCategories();
-          //console.log(data5, 'to be sent');
-         // getUsers();
-          //setData(4854984910831616);
-          //console.log(data4, 'to be sent');
+        
            navigation.navigate('Posts');
           //setTimeout(() => console.log(data5, 'to be sent'), 400);
            //console.log(data5);
@@ -161,52 +152,7 @@ export default function Topics({ navigation, route }) {
         }}>
       </Button> 
    
-    {/* <View>
-      <ScrollView > 
-      {
-      (data5 || []).map((object, id) => {   // map(object, id) view's attribute style={{ flex: 1, padding: 24 }}   below style = {{height:100}}
-          // console.log(object);
-          return (
-            
-              <Button  key={id} 
-                 title = {data5.name}
-                 icon={{
-                  name: 'comment-alt',
-                  type: 'font-awesome-5',
-                 size: 15,
-                 color: 'white',
-                 marginRight: 5,
-                 // alignLeft: 20,
-                 }}
-               buttonStyle={{
-               backgroundColor: 'rgba(78, 116, 289, 1)',
-               borderRadius: 3,
-            }}
-            containerStyle={{
-              width: 330,
-              marginHorizontal: 50,
-              marginVertical: 10,
-            }}
-            raised
-            onPress={() => {
-              
-                navigation.navigate('Posts for Selected Category', {title:data5.name, id:data5.id});
-            
-             }}>
-        
-          
-                 
-                  {/*<Button 
-                      icon = 'delete'
-                      mode='contained'
-                      onPress = {() => deleteData(object)}
-                       color = '#8ec217'    //#6ddd3d  #739f10
-                       
-                 >Delete</Button>*/}
-                
-              
-
-
+    
            <Button 
                 title="Video Games"
                 icon={{
@@ -427,10 +373,7 @@ export default function Topics({ navigation, route }) {
         
         }}>
       </Button> 
-      
-      
-          
-            </ScrollView>
+      </ScrollView>
             
         </View>
         

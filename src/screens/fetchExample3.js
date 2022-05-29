@@ -13,12 +13,12 @@ import { createStackNavigator } from '@react-navigation/stack';
 import {Button, Card} from 'react-native-paper';
 
 
-export default function FetchExample3 ({navigation, route, shouldRefresh, dataComment }) {
+export default function FetchExample3 ({navigation, route, shouldRefresh, postID }) {
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const [Items, setItems] = useState([]);
   const [count, setCount] = useState('');
-  const post_id1 = dataComment;
+  const post_id1 = postID;
 
    //const { title } = route.params;
   //const { title } = route?.params || {};
@@ -30,7 +30,7 @@ export default function FetchExample3 ({navigation, route, shouldRefresh, dataCo
       // const response = await fetch('https://cs467api.uw.r.appspot.com/posts?limit=30&offset=10');
       //https://cs467api.uw.r.appspot.com/users?email=john@cheese.com   example-- a call with email 
         //const response = await fetch('https://cs467api.uw.r.appspot.com/comments?post_id=' + post_id1, {method: 'GET'});
-        const response = await fetch('https://cs467api.uw.r.appspot.com/comments?limit=30', {method: 'GET'});
+        const response = await fetch('https://cs467api.uw.r.appspot.com/posts/'+ post_id1 +'/comments', {method: 'GET'});
        const json = await response.json();
        //console.log(json, 'json here, testing')
        setData(json.comments);  
