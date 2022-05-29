@@ -33,7 +33,7 @@ export default function Post1({ }) {
               user_id: '12249',
               title,
               content,
-              categories: '7',
+              category: '7',
               
           })
       }

@@ -53,7 +53,7 @@ export default function FetchExample2 ({navigation, route, shouldRefresh }) {
             title,  //not do  title: title  
            // key: value - title,
             content,
-            categories: '7',
+            category: '7',
             
         })
     }
