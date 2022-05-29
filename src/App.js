@@ -10,7 +10,6 @@ import Comment1 from './screens/comments1';
 import LoginScreen from './screens/LoginScreen';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import FetchExample2 from './screens/fetchExample2'
-import RegisterScreen from './screens/autho/Register';
 import Comments2 from './screens/comments2';
 import FetchExample3 from './screens/fetchExample3';
 import PostSpecifics from './screens/postSpecific';
@@ -72,10 +71,7 @@ function App() {
           name="Fetch Example"
           component={FetchExample2}
         />
-        <Stack.Screen
-          name="Register Page"
-          component={RegisterScreen}
-        />
+      
         <Stack.Screen
           name="Comments Page"
           component={Comments2}
