@@ -22,20 +22,12 @@ import Icon1 from 'react-native-vector-icons/FontAwesome';
 
 
 
-const db = SQLite.openDatabase(
-    {
-        name: 'MainDB',
-        location: 'default',
-    },
-    () => { },
-    error => { console.log(error) }
-);
-
 export default function Login({ navigation, props, route}) {
 
     //const [name, setName] = useState('');
     //const [age, setPassword] = useState('');
     const {data2} = route?.params || {};
+  
    
     
 
