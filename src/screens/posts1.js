@@ -19,6 +19,8 @@ import { List } from 'react-native-paper';
 
 //https://cs467api.uw.r.appspot.com/
 
+
+
 export default function Post1({ }) {
     const [post, setPost] = useState('');
     const [title, setTitle] = useState('');

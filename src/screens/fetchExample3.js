@@ -13,11 +13,12 @@ import { createStackNavigator } from '@react-navigation/stack';
 import {Button, Card} from 'react-native-paper';
 
 
-export default function FetchExample3 ({navigation, route, shouldRefresh }) {
+export default function FetchExample3 ({navigation, route, shouldRefresh, dataComment }) {
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const [Items, setItems] = useState([]);
   const [count, setCount] = useState('');
+  const post_id1 = dataComment;
 
    //const { title } = route.params;
   //const { title } = route?.params || {};
@@ -28,8 +29,8 @@ export default function FetchExample3 ({navigation, route, shouldRefresh }) {
       try {
       // const response = await fetch('https://cs467api.uw.r.appspot.com/posts?limit=30&offset=10');
       //https://cs467api.uw.r.appspot.com/users?email=john@cheese.com   example-- a call with email 
+        //const response = await fetch('https://cs467api.uw.r.appspot.com/comments?post_id=' + post_id1, {method: 'GET'});
         const response = await fetch('https://cs467api.uw.r.appspot.com/comments?limit=30', {method: 'GET'});
-
        const json = await response.json();
        //console.log(json, 'json here, testing')
        setData(json.comments);  
@@ -156,12 +157,13 @@ export default function FetchExample3 ({navigation, route, shouldRefresh }) {
   //return null;
   return(
     <View>
-      
+     
       <ScrollView style = {styles.scrollView}> 
       {
         (data || []).map((object, id) => {   // map(object, id) view's attribute style={{ flex: 1, padding: 24 }}   below style = {{height:100}}
           // console.log(object);
           return (
+             
               <TouchableOpacity key={id} style={{width: 335, height: 88, backgroundColor: '#ffff', margin:5, 
               borderWidth: 2, borderRadius: 5, borderColor: '#878181'}} >
                    <Text  style={{fontSize: 15}}>{object.content}</Text> 

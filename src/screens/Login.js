@@ -43,7 +43,7 @@ export default function Login({ navigation, props, route}) {
     }
 
     const navigatePage3 = () => {
-        navigation.navigate('Register Page');
+        navigation.navigate('Login Screen');
     }
     
 

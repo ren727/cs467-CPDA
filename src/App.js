@@ -13,6 +13,7 @@ import FetchExample2 from './screens/fetchExample2'
 import Comments2 from './screens/comments2';
 import FetchExample3 from './screens/fetchExample3';
 import PostSpecifics from './screens/postSpecific';
+import FetchExample4 from './screens/fetchExample4';
 
 const icon = <FontAwesome5 name={'comments'} />;
 
@@ -83,6 +84,10 @@ function App() {
         <Stack.Screen
           name="Posts for Selected Category"
           component={PostSpecifics}
+        />
+        <Stack.Screen
+          name="FetchExample4"
+          component={FetchExample4}
         />
       </Stack.Navigator>
     </NavigationContainer>

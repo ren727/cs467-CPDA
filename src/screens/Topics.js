@@ -46,7 +46,7 @@ export default function Topics({ navigation, route }) {
          const json = await response.json();
          console.log(json, 'json here, testing')
          //const parsedData = JSON.parse(json); 
-         setDataSecond(json);  
+         setDataSecond(json.categories);  
        } catch (error) {
           console.error(error, 
            );
@@ -101,6 +101,16 @@ export default function Topics({ navigation, route }) {
         });
       }
 
+      useEffect(() => {
+        console.log('fetching')
+        getCategories();
+        //postNew();
+       // console.log("deleting post")
+         //deletePost();
+        //return () => {
+         //setData({}); // Do not use it unless you understand how this works. After the parent component unmounts, this runs.
+         //};
+      }, [ ]);
   
 
     return(
@@ -111,8 +121,8 @@ export default function Topics({ navigation, route }) {
                  Topic Categories 
             </Text>
     <ScrollView   style={styles.viewbody}>
-           <Button 
-                title="Video Games"
+       <Button 
+                title="All Topics"
                 icon={{
                     name: 'comment-alt',
                     type: 'font-awesome-5',
@@ -139,15 +149,90 @@ export default function Topics({ navigation, route }) {
           //   title: title,S
           //   content: content,
           // });
-          //getCategories();
+           //getCategories();
           //console.log(data5, 'to be sent');
          // getUsers();
           //setData(4854984910831616);
           //console.log(data4, 'to be sent');
            navigation.navigate('Posts');
-         // setTimeout(() => console.log(data5, 'to be sent'), 400);
-          //console.log(data);
+          //setTimeout(() => console.log(data5, 'to be sent'), 400);
+           //console.log(data5);
         // callFetchExample();
+        }}>
+      </Button> 
+   
+    {/* <View>
+      <ScrollView > 
+      {
+      (data5 || []).map((object, id) => {   // map(object, id) view's attribute style={{ flex: 1, padding: 24 }}   below style = {{height:100}}
+          // console.log(object);
+          return (
+            
+              <Button  key={id} 
+                 title = {data5.name}
+                 icon={{
+                  name: 'comment-alt',
+                  type: 'font-awesome-5',
+                 size: 15,
+                 color: 'white',
+                 marginRight: 5,
+                 // alignLeft: 20,
+                 }}
+               buttonStyle={{
+               backgroundColor: 'rgba(78, 116, 289, 1)',
+               borderRadius: 3,
+            }}
+            containerStyle={{
+              width: 330,
+              marginHorizontal: 50,
+              marginVertical: 10,
+            }}
+            raised
+            onPress={() => {
+              
+                navigation.navigate('Posts for Selected Category', {title:data5.name, id:data5.id});
+            
+             }}>
+        
+          
+                 
+                  {/*<Button 
+                      icon = 'delete'
+                      mode='contained'
+                      onPress = {() => deleteData(object)}
+                       color = '#8ec217'    //#6ddd3d  #739f10
+                       
+                 >Delete</Button>*/}
+                
+              
+
+
+           <Button 
+                title="Video Games"
+                icon={{
+                    name: 'comment-alt',
+                    type: 'font-awesome-5',
+                   size: 15,
+                   color: 'white',
+                   marginRight: 5,
+                   // alignLeft: 20,
+                   }}
+                 buttonStyle={{
+                 backgroundColor: 'rgba(78, 116, 289, 1)',
+                 borderRadius: 3,
+              }}
+              containerStyle={{
+                width: 330,
+                marginHorizontal: 50,
+                marginVertical: 10,
+              }}
+              raised
+          
+       
+           onPress={() => {
+        
+           navigation.navigate('Posts for Selected Category', {name:'Video Games', id:4854984910831616 });
+        
         }}>
       </Button> 
 
@@ -172,9 +257,9 @@ export default function Topics({ navigation, route }) {
               }}
               raised
           
-       
            onPress={() => {
-             navigation.navigate('Posts');
+            navigation.navigate('Posts for Selected Category', {name:'Sports', id:5136459887542272 });
+        
           //postNew();
         
         }}>
@@ -203,7 +288,7 @@ export default function Topics({ navigation, route }) {
        
            onPress={() => {
       
-            navigation.navigate('Posts');
+            navigation.navigate('Posts for Selected Category', {name:'Music', id:5150736895705088 });
        
         }}>
       </Button> 
@@ -230,13 +315,7 @@ export default function Topics({ navigation, route }) {
               raised
            
            onPress={() => {
-             //carry the data over to the next screen
-         ///* 1. Navigate to the Details route with params ///
-          //   navigation.navigate('Fetch Example', {
-          //   title: title,S
-          //   content: content,
-          // });
-          //postNew();
+            navigation.navigate('Posts for Selected Category', {name:'Movies & TV', id:5678927947235328 });
         
         }}>
       </Button> 
@@ -263,12 +342,7 @@ export default function Topics({ navigation, route }) {
           
        
            onPress={() => {
-         ///* 1. Navigate to the Details route with params ///
-          //   navigation.navigate('Fetch Example', {
-          //   title: title,S
-          //   content: content,
-          // });
-          //postNew();
+            navigation.navigate('Posts for Selected Category', {name:'Politics & News', id:5699409840963584 });
         
         }}>
       </Button> 
@@ -295,12 +369,7 @@ export default function Topics({ navigation, route }) {
           
        
            onPress={() => {
-         ///* 1. Navigate to the Details route with params ///
-          //   navigation.navigate('Fetch Example', {
-          //   title: title,S
-          //   content: content,
-          // });
-          //postNew();
+            navigation.navigate('Posts for Selected Category', {name:'Science & Technology', id:5713686849126400 });
         
         }}>
       </Button> 
@@ -327,12 +396,7 @@ export default function Topics({ navigation, route }) {
           
        
            onPress={() => {
-         ///* 1. Navigate to the Details route with params ///
-          //   navigation.navigate('Fetch Example', {
-          //   title: title,S
-          //   content: content,
-          // });
-          //postNew();
+            navigation.navigate('Posts for Selected Category', {name:'General Discussion', id:5980884817674240 });
         
         }}>
       </Button> 
@@ -359,12 +423,7 @@ export default function Topics({ navigation, route }) {
           
        
            onPress={() => {
-         ///* 1. Navigate to the Details route with params ///
-          //   navigation.navigate('Fetch Example', {
-          //   title: title,S
-          //   content: content,
-          // });
-          //postNew();
+            navigation.navigate('Posts for Selected Category', {name:'Health & Fitness', id:6262359794384896 });
         
         }}>
       </Button> 

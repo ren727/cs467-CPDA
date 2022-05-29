@@ -15,6 +15,7 @@ import CustomButton3 from '../utils/CustomButton3';
 import FetchExample2 from './fetchExample2';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { Button, ButtonGroup, withTheme} from "@rneui/base";
+import FetchExample4 from './fetchExample4';
 
 //https://cs467api.uw.r.appspot.com/
 
@@ -23,8 +24,10 @@ export default function PostSpecifics({navigation, route }) {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const [getNewData, setGetNewData]  = useState(false);
-    const {data2} = route?.params || {};
-  
+    const {dataCategory} = route?.params || {};
+    const {name} = route?.params || {};
+    const {id} = route?.params || {};
+    
     const postNew =  () => {    
       const requestOptions = {
           method: 'POST',
@@ -34,11 +37,11 @@ export default function PostSpecifics({navigation, route }) {
               user_id: '12249',
               title,
               content,
-              category: '7',
+              category: id,
               
           })
       }
-      fetch('https://cs467api.uw.r.appspot.com/posts?category=4854984910831616', requestOptions)
+      fetch('https://cs467api.uw.r.appspot.com/posts?category' + id, requestOptions)
       .then((response) => response.json())              //response.json()
       .then((response2) => {
         if(response2 !== undefined || response2 !== null) {
@@ -60,12 +63,12 @@ export default function PostSpecifics({navigation, route }) {
         <View style={styles.body} >
       
             <Text style={styles.text}>
-                 All Topics  {data2}
+                 {name}
             </Text>
       
      
     <View style = {{flex: 7}}>
-       <FetchExample2 shouldRefresh={getNewData}/>
+       <FetchExample4 shouldRefresh={getNewData} categoryID={id}/>
      </View>
      <ScrollView keyboardShouldPersistTaps='handled'>
     <View>
