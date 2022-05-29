@@ -15,14 +15,20 @@ import CustomButton3 from '../utils/CustomButton3';
 import FetchExample2 from './fetchExample2';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { Button, ButtonGroup, withTheme} from "@rneui/base";
+import { List } from 'react-native-paper';
 
 //https://cs467api.uw.r.appspot.com/
+
+
 
 export default function Post1({ }) {
     const [post, setPost] = useState('');
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const [getNewData, setGetNewData]  = useState(false);
+    const [category, setCategory] = useState('');
+    const handlePress = () => setExpanded(!expanded);
+    const [expanded, setExpanded] = React.useState(true);
   
     const postNew =  () => {    
       const requestOptions = {
@@ -33,7 +39,7 @@ export default function Post1({ }) {
               user_id: '12249',
               title,
               content,
-              category: '7',
+              category,
               
           })
       }
@@ -68,6 +74,22 @@ export default function Post1({ }) {
      </View>
      <ScrollView keyboardShouldPersistTaps='handled'>
     <View>
+    <List.Section>
+      <List.Accordion
+        title="Pick Your Category"
+        left={props => <List.Icon {...props} icon="comment" />}
+        >
+        <List.Item title="Video Games" onPress={() => {setCategory(4854984910831616) }}/>
+        <List.Item title="Sports" onPress={() => {setCategory(5136459887542272) }}/>
+        <List.Item title="Music" onPress={() => {setCategory(5150736895705088) }}/>
+        <List.Item title="Movies & TV" onPress={() => {setCategory(5678927947235328) }}/>
+        <List.Item title="Politics & News" onPress={() => {setCategory(5699409840963584) }}/>
+        <List.Item title="Science & Technology" onPress={() => {setCategory(5713686849126400) }}/>
+        <List.Item title="General Discussion" onPress={() => {setCategory(5980884817674240) }}/>
+        <List.Item title="Health & Fitness" onPress={() => {setCategory(6262359794384896) }}/>
+      </List.Accordion>
+
+    </List.Section>
       <TextInput
           label = 'Title'
           placeholder='Enter your topic title'

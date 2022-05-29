@@ -11,15 +11,31 @@ import {
 import { Button, ButtonGroup, withTheme} from "@rneui/base";
 import CustomButton from '../utils/CustomButton';
 import GlobalStyle from '../utils/GlobalStyle';
-import { NavigationContainer } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
+
+import { NavigationContainer, NavigationContainerRefContext } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { List } from 'react-native-paper';
+import { ScrollView } from 'react-native-gesture-handler';
 
 
 
-export default function Help({ navigation, route }) {
+
+export default function Help({ navigation }) {
 
     const [name, setName] = useState('');
     const [age, setPassword] = useState('');
+    const [expanded, setExpanded] = React.useState(true);
+    const [data1, setData] = useState('');
+    const navigation1 = useNavigation();
+
+    const handlePress = () => setExpanded(!expanded);
+    const clickedData = (data) => {
+      navigation1.navigate('Topics', {data3:data}) //send data about posts to comment page.
+   };
+   
+  
+  
     
    
 
@@ -32,6 +48,7 @@ export default function Help({ navigation, route }) {
             ]}>
                 Welcome to "Discussion App" !
             </Text>
+          <ScrollView>
             <Button
               title={'React Native Elements'}
               containerStyle={{
@@ -40,33 +57,7 @@ export default function Help({ navigation, route }) {
                 marginVertical: 10,
               }}
             />
-            <Button
-              title="Basic Button"
-              buttonStyle={{
-                backgroundColor: 'rgba(78, 116, 289, 1)',
-                borderRadius: 3,
-              }}
-              containerStyle={{
-                width: 200,
-                marginHorizontal: 50,
-                marginVertical: 10,
-              }}
-            />
-              
-              <Button
-              title="Secondary"
-              buttonStyle={{ backgroundColor: 'rgba(127, 220, 103, 1)' }}
-              containerStyle={{
-                height: 40,
-                width: 200,
-                marginHorizontal: 50,
-                marginVertical: 10,
-              }}
-              titleStyle={{
-                color: 'white',
-                marginHorizontal: 20,
-              }}
-            />
+            
              <Button
               title="Raised Button"
               buttonStyle={{
@@ -114,29 +105,7 @@ export default function Help({ navigation, route }) {
                 marginVertical: 10,
               }}
             />
-           <Button
-              title="PROFILE"
-              icon={{
-                name: 'user',
-                type: 'font-awesome',
-                size: 15,
-                color: 'white',
-              }}
-              iconRight
-              iconContainerStyle={{ marginLeft: 10 }}
-              titleStyle={{ fontWeight: '700' }}
-              buttonStyle={{
-                backgroundColor: 'rgba(199, 43, 98, 1)',
-                borderColor: 'transparent',
-                borderWidth: 0,
-                borderRadius: 30,
-              }}
-              containerStyle={{
-                width: 200,
-                marginHorizontal: 50,
-                marginVertical: 10,
-              }}
-            />
+          
              <Button
               title="Outline Button"
               buttonStyle={{
@@ -164,6 +133,25 @@ export default function Help({ navigation, route }) {
               }}
               titleStyle={{ marginHorizontal: 20, color: 'black' }}
             />
+        <List.Section title="Accordions">
+      <List.Accordion
+        title="Uncontrolled Accordion"
+        left={props => <List.Icon {...props} icon="folder" />}>
+        <List.Item title="First item"/>
+        <List.Item title="Second item" />
+      </List.Accordion>
+
+      <List.Accordion
+        title="Choose A Category"
+        left={props => <List.Icon {...props} icon="folder" />}
+        expanded={expanded}
+        onPress={handlePress}>
+        <List.Item title="Music" onPress={() => { }}/>
+        <List.Item title="Second item" />
+      </List.Accordion>
+    </List.Section>
+    </ScrollView>
+  
             
         </View>
     )

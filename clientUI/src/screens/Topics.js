@@ -19,18 +19,11 @@ import FetchExample from './fetchExample';
 import { Button, ButtonGroup, withTheme} from "@rneui/base";
 import { NavigationContainerRefContext } from '@react-navigation/native';
 
-// const db = SQLite.openDatabase(
-//     {
-//         name: 'MainDB',
-//         location: 'default',
-//     },
-//     () => { },
-//     error => { console.log(error) }
-// );
 
-export default function Topics({ navigation }) {
-    const data3 = '52222222';
 
+export default function Topics({ navigation, route }) {
+   
+     //const {data3} = route?.params || {};
 
     const navigatePage = () => {
         navigation.navigate('Posts');
@@ -115,7 +108,7 @@ export default function Topics({ navigation }) {
     <View style={styles.body}>
            
             <Text style={styles.text}>
-                 Topic Categories
+                 Topic Categories 
             </Text>
     <ScrollView   style={styles.viewbody}>
            <Button 
