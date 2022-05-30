@@ -54,7 +54,7 @@ export default function Login({ navigation, props, route}) {
                 source={require('../../assets/greenplanet.png')}
     />*/}
             <Text style={styles.textLogo}>
-                Discussion App 
+                Cross Platform Discussion App
             </Text>
             <Icon1
                          name="comments-o"

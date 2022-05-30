@@ -14,24 +14,13 @@ import Comments2 from './screens/comments2';
 import FetchExample3 from './screens/fetchExample3';
 import PostSpecifics from './screens/postSpecific';
 import FetchExample4 from './screens/fetchExample4';
-import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import MyTabs from './screens/BottomTab';
-import { Appbar } from 'react-native-paper';
-
-
-import { BottomNavigation, Text } from 'react-native-paper';
-import MyComponent from './screens/BottomTab';
 
 const icon = <FontAwesome5 name={'comments'} />;
 
 const Stack = createStackNavigator();
-const Tab = createBottomTabNavigator();
 
 function App() {
- 
   return (
-   
     <NavigationContainer>
       <Stack.Navigator
         initialRouteName="Home"
@@ -100,18 +89,8 @@ function App() {
           name="FetchExample4"
           component={FetchExample4}
         />
-        <Stack.Screen
-          name="Tab Example"
-          component={MyComponent}
-        />
-        
       </Stack.Navigator>
-     
     </NavigationContainer>
-    
-   
-  
-    
   )
 }
 

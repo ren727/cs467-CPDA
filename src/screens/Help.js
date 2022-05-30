@@ -18,6 +18,8 @@ import { NavigationContainer, NavigationContainerRefContext } from '@react-navig
 import { createStackNavigator } from '@react-navigation/stack';
 import { List } from 'react-native-paper';
 import { ScrollView } from 'react-native-gesture-handler';
+import { Paragraph } from 'react-native-paper';
+import Icon1 from 'react-native-vector-icons/FontAwesome';
 
 
 export default function Help({ navigation }) {
@@ -40,103 +42,62 @@ export default function Help({ navigation }) {
     return (
      
         <View style={styles.body}>
-                
-            <Text style={[
+              <View style={{flexDirection:'row'}}> 
+               <Icon1
+                         name="comments-o"
+                         size={33}
+                         color="#99ef74"/>    
+           <Text style={[
                 //GlobalStyle.CustomFont
                 styles.text
             ]}>
                 Welcome to "Discussion App" !
             </Text>
+               </View>
+           
+            <Text style={[styles.text2]}> This app allows users to express their opinions on various subjects, remaining 
+                anonymous. 
+            </Text>
+            <Text style={[styles.text2]}>To start, click "Topics" button -- you will
+            see a list of general categories of social topics.</Text>
+            <Text style={[styles.text2]}> Clicking "All Topics". You will see topics of various
+             categories to explore new interests. You will select a favorite category when posting your topic so that
+             others having similar interests can easily find yours. 
+            </Text>
+            <Text style={[styles.text2]}>After selecting your favorite category on the dropdown list, please close it by clicking
+            "^" sign.
+             After typing in your topic, click your phone's back button to close the keyboard and then hit "Post Your
+             Topic" button.</Text>
+
+             <Text style={[styles.text2]}>When you select a specific category, then you will see only related topics.
+             Post your favorite topics related to the category.</Text>
+             
+             <Text style={[styles.text2]}> If you find any topic that interest you, then you can
+             click it to see comments related to the topic. Post your comments.  </Text>
+             <Text style={[styles.text2]}></Text>
           <ScrollView>
             <Button
-              title={'React Native Elements'}
-              containerStyle={{
-                width: 200,
-                marginHorizontal: 50,
-                marginVertical: 10,
-              }}
-            />
-            
-             <Button
-              title="Raised Button"
-              buttonStyle={{
-                borderColor: 'rgba(78, 116, 289, 1)',
-              }}
-              type="outline"
-              raised
-              titleStyle={{ color: 'rgba(78, 116, 289, 1)' }}
-              containerStyle={{
-                width: 200,
-                marginHorizontal: 50,
-                marginVertical: 10,
-              }}
-            />
-             
-             <Button
-              containerStyle={{
-                width: 200,
-                marginHorizontal: 50,
-                marginVertical: 10,
-              }}
-              title="Clear Button"
-              type="clear"
-              titleStyle={{ color: 'rgba(78, 116, 289, 1)' }}
-            />
-             <Button
-              title="HOME"
+              title={'Home'}
               icon={{
                 name: 'home',
                 type: 'font-awesome',
                 size: 15,
                 color: 'white',
               }}
-              iconContainerStyle={{ marginRight: 10 }}
-              titleStyle={{ fontWeight: '700' }}
-              buttonStyle={{
-                backgroundColor: 'rgba(90, 154, 230, 1)',
-                borderColor: 'transparent',
-                borderWidth: 0,
-                borderRadius: 30,
-              }}
               containerStyle={{
                 width: 200,
                 marginHorizontal: 50,
                 marginVertical: 10,
               }}
+              onPress={() => {
+        
+                navigation.navigate('Home');
+               
+             }}
             />
-          
-             <Button
-              title="Outline Button"
-              buttonStyle={{
-                borderColor: 'rgba(78, 116, 289, 1)',
-              }}
-              type="outline"
-              titleStyle={{ color: 'rgba(78, 116, 289, 1)' }}
-              containerStyle={{
-                width: 200,
-                marginHorizontal: 50,
-                marginVertical: 10,
-              }}
-            />
-            <Button
-              title="Light"
-              buttonStyle={{
-                backgroundColor: 'rgba(244, 244, 244, 1)',
-                borderRadius: 3,
-              }}
-              containerStyle={{
-                height: 40,
-                width: 200,
-                marginHorizontal: 50,
-                marginVertical: 10,
-              }}
-              titleStyle={{ marginHorizontal: 20, color: 'black' }}
-            />
-       
-           
+        
     </ScrollView>
-  
-      </View>
+    </View>
     
      )
     }
@@ -160,6 +121,14 @@ const styles = StyleSheet.create({
         color: '#226d57',
         fontFamily: 'AbrilFatface-Regular',
     },
+    text2: {
+      fontSize: 15,
+      margin: 10,
+      color: '#226d57',
+      fontFamily: 'AbrilFatface-Regular',
+      textAlign: 'left',
+      marginLeft: 20,
+  },
     logo: {
         width: 200,
         height: 100,
