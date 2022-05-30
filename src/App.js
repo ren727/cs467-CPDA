@@ -17,6 +17,8 @@ import FetchExample4 from './screens/fetchExample4';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MyTabs from './screens/BottomTab';
+import { Appbar } from 'react-native-paper';
+
 
 import { BottomNavigation, Text } from 'react-native-paper';
 import MyComponent from './screens/BottomTab';
@@ -29,6 +31,7 @@ const Tab = createBottomTabNavigator();
 function App() {
  
   return (
+   
     <NavigationContainer>
       <Stack.Navigator
         initialRouteName="Home"

@@ -12,15 +12,12 @@ import { Button, ButtonGroup, withTheme} from "@rneui/base";
 import CustomButton from '../utils/CustomButton';
 import GlobalStyle from '../utils/GlobalStyle';
 import { useNavigation } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import { NavigationContainer, NavigationContainerRefContext } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { List } from 'react-native-paper';
 import { ScrollView } from 'react-native-gesture-handler';
-import { Drawer } from 'react-native-paper';
-
-
-
 
 
 export default function Help({ navigation }) {
@@ -32,20 +29,18 @@ export default function Help({ navigation }) {
     const [expanded, setExpanded] = React.useState(true);
     const [data1, setData] = useState('');
     const navigation1 = useNavigation();
+    const Tab = createBottomTabNavigator();
 
     const handlePress = () => setExpanded(!expanded);
     const clickedData = (data) => {
       navigation1.navigate('Topics', {data3:data}) //send data about posts to comment page.
    };
-   
   
-  
-    
-   
 
     return (
+     
         <View style={styles.body}>
-           
+                
             <Text style={[
                 //GlobalStyle.CustomFont
                 styles.text
@@ -142,6 +137,7 @@ export default function Help({ navigation }) {
     </ScrollView>
   
       </View>
+    
      )
     }
 

@@ -28,7 +28,7 @@ export default function Post1({ }) {
     const [getNewData, setGetNewData]  = useState(false);
     const [category, setCategory] = useState('');
     const handlePress = () => setExpanded(!expanded);
-    const [expanded, setExpanded] = React.useState(true);
+    const [expanded, setExpanded] = useState(true);
   
     const postNew =  () => {    
       const requestOptions = {
