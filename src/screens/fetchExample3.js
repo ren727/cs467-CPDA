@@ -11,28 +11,31 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import {Button, Card} from 'react-native-paper';
+import auth from '@react-native-firebase/auth';
 
 
-export default function FetchExample3 ({navigation, route, shouldRefresh, postID }) {
+export default function FetchExample3 ({navigation, route, shouldRefresh, postID}) {
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const [Items, setItems] = useState([]);
   const [count, setCount] = useState('');
-  const post_id1 = postID;
 
    //const { title } = route.params;
   //const { title } = route?.params || {};
   //const { content } = route.params;
   //const { content } = route?.params || {};
+  const post_id = postID;
+  console.log(post_id);
 
    const getPosts = async () => {
+     console.log(post_id);
       try {
       // const response = await fetch('https://cs467api.uw.r.appspot.com/posts?limit=30&offset=10');
       //https://cs467api.uw.r.appspot.com/users?email=john@cheese.com   example-- a call with email 
-        //const response = await fetch('https://cs467api.uw.r.appspot.com/comments?post_id=' + post_id1, {method: 'GET'});
-        const response = await fetch('https://cs467api.uw.r.appspot.com/posts/'+ post_id1 +'/comments', {method: 'GET'});
+        const response = await fetch('https://cs467api.uw.r.appspot.com/posts/'+ post_id +'/comments', {method: 'GET'});
+
        const json = await response.json();
-       //console.log(json, 'json here, testing')
+       console.log(json, 'fetching a post comment, testing')
        setData(json.comments);  
      } catch (error) {
         console.error(error, 
@@ -46,29 +49,6 @@ export default function FetchExample3 ({navigation, route, shouldRefresh, postID
     return ( data.upvote + 1)
   }
 
-//   const postNew =  () => {
-//     const requestOptions = {
-//         method: 'POST',
-//         headers: { 'Content-Type': 'application/json',
-//                     'Accept': 'application/json',},
-//         body: JSON.stringify({ 
-//             user_id: '12249',
-//             title,  //not do  title: title  
-//            // key: value - title,
-//             content,
-//             categories: '7',
-            
-//         })
-//     }
-//     fetch('https://cs467api.uw.r.appspot.com/comments', requestOptions)
-//     .then((response) => response.json())              //response.json()
-//     .then((json) => {
-//         console.log('Fetch API POST', json.data);
-//     })
-//     .catch((error) => {
-//       console.error(error);
-//     });
-//   }
 
 
  const deletePost =  () => {
@@ -126,7 +106,65 @@ export default function FetchExample3 ({navigation, route, shouldRefresh, postID
          .catch((error) => {
            console.log(error, 'error');
          });
-        }
+        };
+
+  const handleUpvote = (object) => {
+    const user_id = auth().currentUser.uid;
+    console.log(user_id);
+    const comment_id = object.id;
+    console.log(comment_id);
+
+    const requestOptions = {
+      method: 'post',
+      headers: { 'Content-Type': 'application/json',
+                  'Accept': 'application/json',
+                 },
+      body: JSON.stringify({ 
+          comment_id,
+      })
+    };
+
+    fetch('https://cs467api.uw.r.appspot.com/users/' + user_id + "/upvoted", requestOptions)
+         .then((response2) => {
+           if(response2 !== undefined || response2 !== null) {
+               console.log('Fetch API POST', response2);
+               return response2;
+             }
+         })
+         .catch((error) => {
+           console.log(error, 'error');
+         });
+  };
+  
+  const handleDownvote = (object) => {
+    const user_id = auth().currentUser.uid;
+    console.log(user_id);
+    const comment_id = object.id;
+    console.log(comment_id);
+
+    const requestOptions = {
+      method: 'post',
+      headers: { 'Content-Type': 'application/json',
+                  'Accept': 'application/json',
+                 },
+      body: JSON.stringify({ 
+          comment_id,
+      })
+    };
+
+    fetch('https://cs467api.uw.r.appspot.com/users/' + user_id + "/downvoted", requestOptions)
+      
+         .then((response2) => {
+           if(response2 !== undefined || response2 !== null) {
+               console.log('Fetch API POST', response2);
+               return response2;
+             }
+         })
+         .catch((error) => {
+           console.log(error, 'error');
+         });
+  };
+  
   
   const clickedData = (data) => {
     navigation.navigate('Comment Page', {data:data})
@@ -157,13 +195,12 @@ export default function FetchExample3 ({navigation, route, shouldRefresh, postID
   //return null;
   return(
     <View>
-     
+      
       <ScrollView style = {styles.scrollView}> 
       {
         (data || []).map((object, id) => {   // map(object, id) view's attribute style={{ flex: 1, padding: 24 }}   below style = {{height:100}}
           // console.log(object);
           return (
-             
               <TouchableOpacity key={id} style={{width: 335, height: 88, backgroundColor: '#ffff', margin:5, 
               borderWidth: 2, borderRadius: 5, borderColor: '#878181'}} >
                    <Text  style={{fontSize: 15}}>{object.content}</Text> 
@@ -181,24 +218,24 @@ export default function FetchExample3 ({navigation, route, shouldRefresh, postID
                        onPress = {() => 
                           //setCount(object.upvote + 1)}
                           //console.log(count)}
-                          editComments(object)}
+                          handleUpvote(object)}
                           color = '#6d8238'    //#6ddd3d  #739f10  #6d8238
                        //width = '30'    //'44%'
                        labelStyle={{fontSize: 10}}
                        style = {styles.buttonLayout1}
                       // height = '30'  //'60%'
             
-                         >Upvote {object.upvote}</Button>
+                         >Upvote {object.upvotes}</Button>
                     <Button 
                       icon = 'thumb-down-outline'
                       mode='text'
-                      //onPress = {() => deleteData(object)}
+                      onPress = {() => handleDownvote(object)}
                        color = '#6d8238'    //#6ddd3d  #739f10
                       // width = '48%'
                        labelStyle={{fontSize: 10}}
                        style = {styles.buttonLayout1}
                        //height = '60%'
-                         >Downvote {object.downvote}</Button>
+                         >Downvote {object.downvotes}</Button>
                   </View>
               </TouchableOpacity>
               

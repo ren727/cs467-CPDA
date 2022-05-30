@@ -95,6 +95,16 @@ export default function Help({ navigation }) {
                
              }}
             />
+             <Button
+              containerStyle={{
+                width: 200,
+                marginHorizontal: 50,
+                marginVertical: 10,
+              }}
+              title="Clear Button"
+              type="clear"
+              titleStyle={{ color: 'rgba(78, 116, 289, 1)' }}
+            />
         
     </ScrollView>
     </View>
