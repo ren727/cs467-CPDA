@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
-    Button,
+    
     TouchableOpacity,
     ScrollView,
     View,
@@ -15,6 +15,8 @@ import CustomButton3 from '../utils/CustomButton3';
 import FetchExample2 from './fetchExample2';
 import DropDownPicker from 'react-native-dropdown-picker';
 import FetchExample3 from './fetchExample3';
+import auth from '@react-native-firebase/auth';
+import { Button, ButtonGroup, withTheme} from "@rneui/base";
 
 
 
@@ -28,18 +30,21 @@ export default function Comments2({props, route }) {
     const post_id = data1.id;
     
   
-    const postNew =  () => {    
+    const postNew =  () => {
+      console.log("post a new comment");
+      let commentData = {
+          user_id: auth()?.currentUser?.uid,
+          post_id: post_id,
+          content: content
+      };
+      console.log(commentData);
+
       const requestOptions = {
           method: 'POST',
           headers: { 'Content-Type': 'application/json',
           'Accept': 'application/json',},  //    'Accept': 'application/json',
 
-          body: JSON.stringify({ 
-              user_id: 'nkVcCsK8tHO8934s74SsLt0Jgcj2',
-              post_id,
-              content,
-              
-          })
+          body: JSON.stringify(commentData)
       }
       fetch('https://cs467api.uw.r.appspot.com/posts/'+ post_id +'/comments', requestOptions)
      
@@ -85,35 +90,29 @@ export default function Comments2({props, route }) {
       />
        </View>
    
-     
        <Button
-        //onPress={setItems([...Items, {item: comment}])}
-        //hitSlop={{ top: 10, bottom: 10, right: 10, left: 10 }}  //increase touchble areas in view/button
-        //android_ripple={{ color: '#00f' }} //blue
-        //style={({ pressed }) => [
-          //{ backgroundColor: pressed ? '#dddddd' : '#00ff00' }, //light gray    green
-         
-         mode='contained'
-         style = {styles.buttonInput}
-          title = "Post Your Comment"
-         color = 'rgba(78, 116, 289, 1)'    //#6ddd3d  #739f10  #8ec217
+   
+   title="Post Your Comment"
+   buttonStyle={{
+     backgroundColor: 'rgba(78, 116, 289, 1)',
+     borderRadius: 3,
+   }}
+   containerStyle={{
+     width: 200,
+     marginHorizontal: 50,
+     marginVertical: 10,
+   }}
+   raised
 
-     
 
+     onPress={() => {
 
-
-         onPress={() => {
-         ///* 1. Navigate to the Details route with params ///
-          //   navigation.navigate('Fetch Example', {
-          //   title: title,S
-          //   content: content,
-          // });
-          postNew();
-        // callFetchExample();
-        }}>
-      
-         
+     postNew();
+// callFetchExample();
+}}>
+        
       </Button> 
+       
       </ScrollView> 
     
       

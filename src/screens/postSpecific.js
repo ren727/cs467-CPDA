@@ -93,19 +93,7 @@ export default function PostSpecifics({navigation, route }) {
        </View>
    
      
-       <Button
-        //onPress={setItems([...Items, {item: comment}])}
-        //hitSlop={{ top: 10, bottom: 10, right: 10, left: 10 }}  //increase touchble areas in view/button
-        //android_ripple={{ color: '#00f' }} //blue
-        //style={({ pressed }) => [
-          //{ backgroundColor: pressed ? '#dddddd' : '#00ff00' }, //light gray    green
-         
-         // style = {styles.buttonInput}
-          //title = "Post Your Topic"
-         //color = '#8ec217'    //#6ddd3d  #739f10
-
-
-         
+       <Button     
               title="Post Your Topic"
               buttonStyle={{
                 backgroundColor: 'rgba(78, 116, 289, 1)',
@@ -120,11 +108,7 @@ export default function PostSpecifics({navigation, route }) {
           
        
          onPress={() => {
-         ///* 1. Navigate to the Details route with params ///
-          //   navigation.navigate('Fetch Example', {
-          //   title: title,S
-          //   content: content,
-          // });
+       
           postNew();
         // callFetchExample();
         }}>
@@ -132,6 +116,27 @@ export default function PostSpecifics({navigation, route }) {
          
       </Button> 
       </ScrollView> 
+      <Button
+              containerStyle={{
+                width: 200,
+                marginHorizontal: 50,
+                marginVertical: 10,
+              }}
+              icon={{
+                name: 'home',
+                type: 'font-awesome',
+                size: 15,
+                color: 'rgba(78, 116, 289, 1)',
+              }}
+              title="HOME"
+              type="clear"
+              titleStyle={{ color: 'rgba(78, 116, 289, 1)' }}
+              onPress={() => {
+        
+                navigation.navigate('Home');
+               
+             }}
+            />
    
       
     </View>

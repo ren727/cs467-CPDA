@@ -18,6 +18,7 @@ import { FlatList } from 'react-native-gesture-handler';
 import FetchExample from './fetchExample';
 import { Button, ButtonGroup, withTheme} from "@rneui/base";
 import { NavigationContainerRefContext } from '@react-navigation/native';
+import { Divider } from "react-native-elements";
 
 
 
@@ -103,13 +104,7 @@ export default function Topics({ navigation, route }) {
 
       useEffect(() => {
         console.log('fetching')
-        //getCategories();
-        //postNew();
-       // console.log("deleting post")
-         //deletePost();
-        //return () => {
-         //setData({}); // Do not use it unless you understand how this works. After the parent component unmounts, this runs.
-         //};
+       
       }, [ ]);
   
 
@@ -120,6 +115,15 @@ export default function Topics({ navigation, route }) {
             <Text style={styles.text}>
                  Topic Categories 
             </Text>
+            <Divider
+                style={{ width: "80%", margin: 20, marginTop: 5,  }}
+                color="green"
+                insetType="left"
+                subHeader="Click one of the categories. You can scroll down the list."
+                subHeaderStyle={{color: 'green', fontSize: 15}}
+                width={1}
+                orientation="horizontal"
+            />
     <ScrollView   style={styles.viewbody}>
        <Button 
                 title="All Topics"
@@ -374,6 +378,27 @@ export default function Topics({ navigation, route }) {
         }}>
       </Button> 
       </ScrollView>
+      <Button
+              containerStyle={{
+                width: 200,
+                marginHorizontal: 50,
+                marginVertical: 10,
+              }}
+              icon={{
+                name: 'home',
+                type: 'font-awesome',
+                size: 15,
+                color: 'rgba(78, 116, 289, 1)',
+              }}
+              title="HOME"
+              type="clear"
+              titleStyle={{ color: 'rgba(78, 116, 289, 1)' }}
+              onPress={() => {
+        
+                navigation.navigate('Home');
+               
+             }}
+            />
             
         </View>
         
@@ -393,11 +418,11 @@ const styles = StyleSheet.create({
         margin: 20,
     },
     text: {
-        fontSize: 18,
+        fontSize: 17,
         fontWeight: 'bold',
         color: '#52a22f',
         fontFamily: 'NanumPenScript-Regular',
-        marginBottom: 33,
+        marginBottom: 14,
         marginTop: 22,
     },
     input: {

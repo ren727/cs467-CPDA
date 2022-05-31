@@ -70,7 +70,7 @@ export default function Help({ navigation }) {
      <Card containerStyle={{}} wrapperStyle={{}}>
          
       <Card.Title>What you can do with this program.</Card.Title>
-      <Card.Divider />
+      <Card.Divider/>
       <View
         style={{
           position: "relative",
@@ -78,7 +78,7 @@ export default function Help({ navigation }) {
         }}
       >
        
-        <Text style={styles.text3}>This app allows users to express their opinions on various subjects, remaining 
+        <Text style={styles.text3}>This app allows users to freely express their opinions on various subjects, remaining 
                 anonymous. </Text>
       </View>
       <Card.Title>How to use this app.</Card.Title>
@@ -90,8 +90,7 @@ export default function Help({ navigation }) {
         }}
       >
        
-        <Text style={styles.text3}>To start, click "Topics" button -- you will
-            see a list of general categories of social topics. </Text>
+        <Text style={styles.text3}>To start, click "Topic" button. You will see a list of general categories of social topics. </Text>
       </View>
       <Card.Divider />
       <View
@@ -112,8 +111,7 @@ export default function Help({ navigation }) {
         }}
       >
        
-        <Text style={styles.text3}> Or you can select your favorite category. 
-           You will see topics related 
+        <Text style={styles.text3}> Or you can select your favorite category. You will see topics related 
              to the category and you can post your own. Other users having similar interests can easily find yours.</Text>
       </View>
       <Card.Divider />
@@ -125,7 +123,7 @@ export default function Help({ navigation }) {
       >
        
         <Text style={styles.text3}>To post your favorite topic, select a category on the list. Then, close the list by clicking
-            "^" sign. After typing in your topic, click your phone's back button to close the keyboard, and then hit "Post Your
+            "^" sign. After typing in your topic, click your phone's back button to close the keypad, and then hit "Post Your
              Topic" button.</Text>
       </View>
       <Card.Divider />
@@ -147,40 +145,31 @@ export default function Help({ navigation }) {
         }}
       >
        
-        <Text style={styles.text3}>If you find any topic that interests you, then you can
-             click it to see comments related to the topic. Post your comments. </Text>
+        <Text style={styles.text3}>If you find any topic that interests you, then you can select the topic. click it to see comments related to the topic. Post your comments. </Text>
       </View>
     </Card>
     </ScrollView>
           
-            <Button
-              title={'Home'}
-              icon={{
-                name: 'home',
-                type: 'font-awesome',
-                size: 15,
-                color: 'white',
-              }}
-              containerStyle={{
-                width: 200,
-                marginHorizontal: 50,
-                marginVertical: 10,
-              }}
-              onPress={() => {
-        
-                navigation.navigate('Home');
-               
-             }}
-            />
              <Button
               containerStyle={{
                 width: 200,
                 marginHorizontal: 50,
                 marginVertical: 10,
               }}
-              title="Clear Button"
+              icon={{
+                name: 'home',
+                type: 'font-awesome',
+                size: 15,
+                color: 'rgba(78, 116, 289, 1)',
+              }}
+              title="HOME"
               type="clear"
               titleStyle={{ color: 'rgba(78, 116, 289, 1)' }}
+              onPress={() => {
+        
+                navigation.navigate('Home');
+               
+             }}
             />
         
     
@@ -218,6 +207,9 @@ const styles = StyleSheet.create({
   },
    text3: {
        marginBottom: 15,
+       textAlign:'left',
+       marginLeft: 10,
+      
    },
     logo: {
         width: 200,

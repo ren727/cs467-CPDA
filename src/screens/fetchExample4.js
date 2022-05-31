@@ -146,32 +146,7 @@ export default function FetchExample4 ({navigation, route, shouldRefresh, catego
                        color = '#8ec217'    //#6ddd3d  #739f10
                        
                  >Delete</Button>*/}
-                 <Button
-                   raised
-                  title="delete"
-                   onPress = {() => deleteData(object)}
-                   icon={{
-                   name: 'trash',
-                   type: 'font-awesome',
-                  size: 15,
-                  color: 'white',
-                   
-                  }}
-                   iconContainerStyle={{ marginRight: 10 }}
-                   titleStyle={{ fontWeight: '700' }}
-                  buttonStyle={{
-                   backgroundColor: 'rgba(90, 154, 230, 1)',
-                   borderColor: 'transparent',
-                   borderWidth: 0,
-                   borderRadius: 30,
-                  }}
-                  containerStyle={{
-                    width: 88,
-                    marginHorizontal: 220,
-                    marginVertical: 2,
-                  }}
-              
-                />
+                 
               </TouchableOpacity>
               
             

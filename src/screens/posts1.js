@@ -16,6 +16,7 @@ import FetchExample2 from './fetchExample2';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { Button, ButtonGroup, withTheme} from "@rneui/base";
 import { List } from 'react-native-paper';
+import auth from '@react-native-firebase/auth';
 
 //https://cs467api.uw.r.appspot.com/
 
@@ -28,20 +29,22 @@ export default function Post1({ }) {
     const [getNewData, setGetNewData]  = useState(false);
     const [category, setCategory] = useState('');
     const handlePress = () => setExpanded(!expanded);
-    const [expanded, setExpanded] = useState(true);
+    const [expanded, setExpanded] = React.useState(true);
   
-    const postNew =  () => {    
+    const postNew =  () => {
+      console.log("create a new Post");
+      postData = {
+        user_id: auth()?.currentUser?.uid,
+        title,
+        content,
+        category,
+      };
+      console.log(postData);    
       const requestOptions = {
           method: 'POST',
           headers: { 'Content-Type': 'application/json',
                       'Accept': 'application/json',},
-          body: JSON.stringify({ 
-              user_id: 'hKPP6Nb4agRNtujV90VQoIUBIm23',
-              title,
-              content,
-              category,
-              
-          })
+          body: JSON.stringify(postData)
       }
       fetch('https://cs467api.uw.r.appspot.com/posts', requestOptions)
       .then((response) => response.json())              //response.json()
@@ -143,10 +146,9 @@ export default function Post1({ }) {
           // });
           postNew();
         // callFetchExample();
-        }}>
-      
-         
+        }}>   
       </Button> 
+     
       </ScrollView> 
    
       
@@ -169,7 +171,7 @@ const styles = StyleSheet.create({
         margin: 20,
     },
     text: {
-        fontSize: 18,
+        fontSize: 17,
         color: '#52a22f',  //#50bf9e  #6ddd3d  #518524
         fontFamily: 'NanumPenScript-Regular',
         marginBottom: 22,
