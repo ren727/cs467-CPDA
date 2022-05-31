@@ -7,9 +7,9 @@ export default function Header () {
     <View>
       <View>
           <View>
-            <Image 
+            {/*<Image 
             source={require('../../assets/funpic.jpeg')}
-            />
+  />*/}
 
           </View>
           

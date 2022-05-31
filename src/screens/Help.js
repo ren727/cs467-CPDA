@@ -20,6 +20,8 @@ import { List } from 'react-native-paper';
 import { ScrollView } from 'react-native-gesture-handler';
 import { Paragraph } from 'react-native-paper';
 import Icon1 from 'react-native-vector-icons/FontAwesome';
+import { Divider } from "react-native-elements";
+import { Card } from "react-native-elements";
 
 
 export default function Help({ navigation }) {
@@ -51,31 +53,106 @@ export default function Help({ navigation }) {
                 //GlobalStyle.CustomFont
                 styles.text
             ]}>
-                Welcome to "Discussion App" !
+                Welcome to Discussion App !
             </Text>
-               </View>
            
-            <Text style={[styles.text2]}> This app allows users to express their opinions on various subjects, remaining 
-                anonymous. 
-            </Text>
-            <Text style={[styles.text2]}>To start, click "Topics" button -- you will
-            see a list of general categories of social topics.</Text>
-            <Text style={[styles.text2]}> Clicking "All Topics". You will see topics of various
-             categories to explore new interests. You will select a favorite category when posting your topic so that
-             others having similar interests can easily find yours. 
-            </Text>
-            <Text style={[styles.text2]}>After selecting your favorite category on the dropdown list, please close it by clicking
-            "^" sign.
-             After typing in your topic, click your phone's back button to close the keyboard and then hit "Post Your
+               </View>
+               <Divider
+                style={{ width: "80%", margin: 20, marginTop: 5,  }}
+                color="green"
+                insetType="left"
+                subHeader="Express Yourself -- Discuss social topics"
+                subHeaderStyle={{color: 'green', fontSize: 15}}
+                width={1}
+                orientation="horizontal"
+            />
+    <ScrollView>        
+     <Card containerStyle={{}} wrapperStyle={{}}>
+         
+      <Card.Title>What you can do with this program.</Card.Title>
+      <Card.Divider />
+      <View
+        style={{
+          position: "relative",
+          alignItems: "center"
+        }}
+      >
+       
+        <Text style={styles.text3}>This app allows users to express their opinions on various subjects, remaining 
+                anonymous. </Text>
+      </View>
+      <Card.Title>How to use this app.</Card.Title>
+      <Card.Divider />
+      <View
+        style={{
+          position: "relative",
+          alignItems: "center"
+        }}
+      >
+       
+        <Text style={styles.text3}>To start, click "Topics" button -- you will
+            see a list of general categories of social topics. </Text>
+      </View>
+      <Card.Divider />
+      <View
+        style={{
+          position: "relative",
+          alignItems: "center"
+        }}
+      >
+       
+        <Text style={styles.text3}>By clicking "All Topics". You will see topics of all
+             categories to explore new interests.</Text>
+      </View>
+      <Card.Divider />
+      <View
+        style={{
+          position: "relative",
+          alignItems: "center"
+        }}
+      >
+       
+        <Text style={styles.text3}> Or you can select your favorite category. 
+           You will see topics related 
+             to the category and you can post your own. Other users having similar interests can easily find yours.</Text>
+      </View>
+      <Card.Divider />
+      <View
+        style={{
+          position: "relative",
+          alignItems: "center"
+        }}
+      >
+       
+        <Text style={styles.text3}>To post your favorite topic, select a category on the list. Then, close the list by clicking
+            "^" sign. After typing in your topic, click your phone's back button to close the keyboard, and then hit "Post Your
              Topic" button.</Text>
-
-             <Text style={[styles.text2]}>When you select a specific category, then you will see only related topics.
-             Post your favorite topics related to the category.</Text>
-             
-             <Text style={[styles.text2]}> If you find any topic that interest you, then you can
-             click it to see comments related to the topic. Post your comments.  </Text>
-             <Text style={[styles.text2]}></Text>
-          <ScrollView>
+      </View>
+      <Card.Divider />
+      <View
+        style={{
+          position: "relative",
+          alignItems: "center"
+        }}
+      >
+       
+        <Text style={styles.text3}>When you select a specific category (e.g Music, Video Games), then you will see only related topics.
+             Post your topic related to the category.</Text>
+      </View>
+      <Card.Divider />
+      <View
+        style={{
+          position: "relative",
+          alignItems: "center"
+        }}
+      >
+       
+        <Text style={styles.text3}>If you find any topic that interests you, then you can
+             click it to see comments related to the topic. Post your comments. </Text>
+      </View>
+    </Card>
+    </ScrollView>
+          
             <Button
               title={'Home'}
               icon={{
@@ -106,7 +183,7 @@ export default function Help({ navigation }) {
               titleStyle={{ color: 'rgba(78, 116, 289, 1)' }}
             />
         
-    </ScrollView>
+    
     </View>
     
      )
@@ -139,6 +216,9 @@ const styles = StyleSheet.create({
       textAlign: 'left',
       marginLeft: 20,
   },
+   text3: {
+       marginBottom: 15,
+   },
     logo: {
         width: 200,
         height: 100,

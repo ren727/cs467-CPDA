@@ -35,10 +35,9 @@ export default function Comments2({props, route }) {
           'Accept': 'application/json',},  //    'Accept': 'application/json',
 
           body: JSON.stringify({ 
-              user_id: '5704568633556992',
+              user_id: 'nkVcCsK8tHO8934s74SsLt0Jgcj2',
               post_id,
               content,
-              upvote: 2,
               
           })
       }

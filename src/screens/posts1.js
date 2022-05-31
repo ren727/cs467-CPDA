@@ -36,7 +36,7 @@ export default function Post1({ }) {
           headers: { 'Content-Type': 'application/json',
                       'Accept': 'application/json',},
           body: JSON.stringify({ 
-              user_id: '12249',
+              user_id: 'hKPP6Nb4agRNtujV90VQoIUBIm23',
               title,
               content,
               category,

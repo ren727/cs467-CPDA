@@ -19,6 +19,7 @@ export default function FetchExample3 ({navigation, route, shouldRefresh, postID
   const [data, setData] = useState([]);
   const [Items, setItems] = useState([]);
   const [count, setCount] = useState('');
+  const [refresh1, setRefresh]=useState(false);
 
    //const { title } = route.params;
   //const { title } = route?.params || {};
@@ -109,7 +110,8 @@ export default function FetchExample3 ({navigation, route, shouldRefresh, postID
         };
 
   const handleUpvote = (object) => {
-    const user_id = auth().currentUser.uid;
+   // const user_id = auth().currentUser.uid;
+    const user_id = 'hKPP6Nb4agRNtujV90VQoIUBIm23';
     console.log(user_id);
     const comment_id = object.id;
     console.log(comment_id);
@@ -128,6 +130,8 @@ export default function FetchExample3 ({navigation, route, shouldRefresh, postID
          .then((response2) => {
            if(response2 !== undefined || response2 !== null) {
                console.log('Fetch API POST', response2);
+               setRefresh(true);
+               setTimeout(() => setRefresh(false), 300);
                return response2;
              }
          })
@@ -137,7 +141,8 @@ export default function FetchExample3 ({navigation, route, shouldRefresh, postID
   };
   
   const handleDownvote = (object) => {
-    const user_id = auth().currentUser.uid;
+    //const user_id = auth().currentUser.uid;
+    const user_id = 'hKPP6Nb4agRNtujV90VQoIUBIm23';
     console.log(user_id);
     const comment_id = object.id;
     console.log(comment_id);
@@ -157,6 +162,8 @@ export default function FetchExample3 ({navigation, route, shouldRefresh, postID
          .then((response2) => {
            if(response2 !== undefined || response2 !== null) {
                console.log('Fetch API POST', response2);
+               setRefresh(true);
+               setTimeout(() => setRefresh(false), 300);
                return response2;
              }
          })
@@ -180,6 +187,7 @@ export default function FetchExample3 ({navigation, route, shouldRefresh, postID
  }
   
 
+
   useEffect(() => {
     console.log('fetching')
     getPosts();
@@ -189,7 +197,7 @@ export default function FetchExample3 ({navigation, route, shouldRefresh, postID
     //return () => {
      //setData({}); // Do not use it unless you understand how this works. After the parent component unmounts, this runs.
      //};
-  }, [shouldRefresh == true, ]);
+  }, [shouldRefresh == true, refresh1 == true,]);
 
   // console.log(data," this is data")
   //return null;
@@ -200,6 +208,7 @@ export default function FetchExample3 ({navigation, route, shouldRefresh, postID
       {
         (data || []).map((object, id) => {   // map(object, id) view's attribute style={{ flex: 1, padding: 24 }}   below style = {{height:100}}
           // console.log(object);
+          
           return (
               <TouchableOpacity key={id} style={{width: 335, height: 88, backgroundColor: '#ffff', margin:5, 
               borderWidth: 2, borderRadius: 5, borderColor: '#878181'}} >
@@ -212,20 +221,22 @@ export default function FetchExample3 ({navigation, route, shouldRefresh, postID
                        color = '#8ec217'    //#6ddd3d  #739f10
                        width = '10%'
                       ></Button>*/}
-                    <Button 
+                   <Button 
                       icon = 'thumb-up-outline'
                       mode='text'
                        onPress = {() => 
                           //setCount(object.upvote + 1)}
                           //console.log(count)}
                           handleUpvote(object)}
+                          
                           color = '#6d8238'    //#6ddd3d  #739f10  #6d8238
                        //width = '30'    //'44%'
                        labelStyle={{fontSize: 10}}
                        style = {styles.buttonLayout1}
                       // height = '30'  //'60%'
             
-                         >Upvote {object.upvotes}</Button>
+                       >Upvote {object.upvotes}</Button>
+                         {/*<UpVoteButton object={object}></UpVoteButton>*/}
                     <Button 
                       icon = 'thumb-down-outline'
                       mode='text'
@@ -252,6 +263,29 @@ export default function FetchExample3 ({navigation, route, shouldRefresh, postID
   );
   };
 
+  const UpVoteButton = props => {
+    const [count, setCount] = useState(props.object.upvotes)
+    return (
+      <Button 
+      icon = 'thumb-up-outline'
+      mode='text'
+       onPress = {() => 
+          //setCount(object.upvote + 1)}
+          //console.log(count)}
+           this.handleUpvote(props.object),
+           console.log(props.object)
+          //setCount(count+1)
+        }
+          color = '#6d8238'    //#6ddd3d  #739f10  #6d8238
+       //width = '30'    //'44%'
+       labelStyle={{fontSize: 10}}
+       style = {styles.buttonLayout1}
+      // height = '30'  //'60%'
+
+         >Upvote {props.object.upvotes}</Button>
+
+    )
+  }
 
 const styles = StyleSheet.create({
     titleText: {

@@ -113,7 +113,9 @@ export default function FetchExample2 ({navigation, route, shouldRefresh }) {
   useEffect(() => {
     console.log('fetching')
     getPosts();
-   
+    //postNew();
+   // console.log("deleting post")
+     //deletePost();
     //return () => {
      //setData({}); // Do not use it unless you understand how this works. After the parent component unmounts, this runs.
      //};

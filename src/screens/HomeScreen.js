@@ -10,9 +10,10 @@ import CustomButton2 from '../utils/CustomButton2';
 import Icon from 'react-native-vector-icons/SimpleLineIcons';
 import Icon1 from 'react-native-vector-icons/FontAwesome';
 import Icon2 from 'react-native-vector-icons/AntDesign';
-import CustomListItem from '../components/CustomListItem';
+//import CustomListItem from '../components/CustomListItem';
 // import {auth, db } from "../../firebase/config";
 import auth from '@react-native-firebase/auth';
+import { Divider } from "react-native-elements";
 
 
 export default function HomeScreen ({ navigation }) {
@@ -76,28 +77,39 @@ export default function HomeScreen ({ navigation }) {
 
 
     return (
-        <SafeAreaView>
+        <SafeAreaView style={styles.body}>
+         <Divider
+            style={{ width: "80%", margin: 20 }}
+            color="green"
+            insetType="left"
+            subHeader="Discuss Social Topics"
+            subHeaderStyle={{color: 'green', fontSize: 15}}
+             width={1}
+             orientation="horizontal"
+            />
+
+            <Text style={styles.textLogo}>
+                Cross Platform Discussion App 
+            </Text>
+             <Text style={styles.textLogo1}>Jing Zheng</Text>
+             <Text style={styles.textLogo1}>Casey Arndt</Text>
+             <Text style={styles.textLogo1}>Kazu Ishihara</Text>
+            <Icon1
+                         name="comments-o"
+                         size={77}
+                         color="#99ef74"/> 
             <View style={styles.body} >
             {/*<Image
                 style={styles.logo}
                 source={require('../../assets/greenplanet.png')}
     />*/}
-            <Text style={styles.textLogo}>
-                Discussion App 
-            </Text>
-            <Icon1
-                         name="comments-o"
-                         size={155}
-                         color="#99ef74"/>   
-
-
            <View   style={styles.viewbody}>
             <CustomButton 
                 style={styles.button}
                 title='Help'
                 color='#6ddd3d'
                 onPressFunction={navigatePage}
-            />
+             />
             
             <CustomButton1
                 style={styles.button}
@@ -139,11 +151,19 @@ const styles = StyleSheet.create({
         
     },
     textLogo: {
-        fontSize: 27,
+        fontSize: 22,
         color: 'green',
         fontFamily: 'NanumPenScript-Regular',
-        marginBottom: 70,
+        marginBottom: 55,
         marginTop: 30,
+        fontWeight: 'bold',
+    },
+    textLogo1: {
+        fontSize: 15,
+        color: 'green',
+        fontFamily: 'NanumPenScript-Regular',
+        marginBottom: 5,
+        marginTop: 5,
         fontWeight: 'bold',
     },
     input: {
@@ -178,5 +198,6 @@ const styles = StyleSheet.create({
 
     viewbody: {
         flexDirection: 'row',
+        backgroundColor: '#ffffff',
     }
 });
